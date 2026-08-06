@@ -8,6 +8,8 @@ export const PERSONAS: Persona[] = [
     role: "individual_client",
     shell: "client",
     description: "First-time filer with a personal 1040. Cold start demo.",
+    showInPicker: true,
+    pickerLabel: "Client",
   },
   {
     id: "sam",
@@ -16,6 +18,8 @@ export const PERSONAS: Persona[] = [
     role: "business_owner",
     shell: "client",
     description: "Small-business return in progress. Mixed-entity demo.",
+    showInPicker: false,
+    pickerLabel: "Client",
   },
   {
     id: "jordan",
@@ -24,6 +28,8 @@ export const PERSONAS: Persona[] = [
     role: "preparer",
     shell: "firm",
     description: "Default CPA path — dashboard, review, collaboration.",
+    showInPicker: true,
+    pickerLabel: "CPA",
   },
   {
     id: "jordan-personal",
@@ -32,6 +38,7 @@ export const PERSONAS: Persona[] = [
     role: "preparer",
     shell: "client",
     description: "Same person in client context for their own return.",
+    showInPicker: false,
     secondaryLabel: "Personal filing",
   },
   {
@@ -41,11 +48,17 @@ export const PERSONAS: Persona[] = [
     role: "reviewer",
     shell: "firm",
     description: "Review-focused nav and reduced edit permissions.",
+    showInPicker: false,
+    pickerLabel: "CPA",
   },
 ];
 
 export function getPersona(id: string | null | undefined): Persona | undefined {
   return PERSONAS.find((p) => p.id === id);
+}
+
+export function getPickerPersonas(): Persona[] {
+  return PERSONAS.filter((p) => p.showInPicker);
 }
 
 export function homePathForPersona(persona: Persona): string {

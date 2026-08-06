@@ -11,14 +11,15 @@ import {
 import { useRouter } from "next/navigation";
 import {
   getPersona,
+  getPickerPersonas,
   homePathForPersona,
-  PERSONAS,
 } from "@/lib/personas";
 import { PERSONA_COOKIE } from "@/lib/persona-cookie";
 import type { Persona, PersonaId } from "@/lib/types";
 
 type PersonaContextValue = {
   persona: Persona | null;
+  /** Personas shown on landing + role switcher (currently Client + CPA). */
   personas: Persona[];
   selectPersona: (id: PersonaId) => void;
   clearPersona: () => void;
@@ -72,7 +73,7 @@ export function PersonaProvider({
   const value = useMemo(
     () => ({
       persona,
-      personas: PERSONAS,
+      personas: getPickerPersonas(),
       selectPersona,
       clearPersona,
     }),

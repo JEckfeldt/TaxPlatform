@@ -1,6 +1,6 @@
 # TaxPlatform — Project Roadmap
 
-Rough delivery roadmap for the case study prototype. Each **challenge is a milestone**. Foundational scaffolding (M0) is done; challenge milestones ship interactive UX on that shell.
+Product UI name: **GreenGrowth**. Rough delivery roadmap for the case study prototype. Each **challenge is a milestone**. Foundational scaffolding (M0) is done; challenge milestones ship interactive UX on that shell.
 
 **Companion docs:** [project overview.md](./project%20overview.md) · [case study PDF](./AI_Engineer_Case_Study_Updated.pdf)
 
@@ -26,7 +26,7 @@ Rough delivery roadmap for the case study prototype. Each **challenge is a miles
 | --- | --- | --- | --- | --- |
 | **M0** | Foundation (scaffold) | — | ~4–6h | **Done** |
 | **M05** | Role-Aware Experiences | M0 | ~3–4h | Partial (picker + switcher) |
-| **M03** | Where to Start | M05 | ~4–5h | Stub |
+| **M03** | Where to Start | M05 | ~4–5h | **Done** (picker trimmed to 2) |
 | **M06** | Return Status & Progress | M03 | ~3–4h | Stub |
 | **M02** | Client & CPA Collaboration | M03 | ~4–5h | Stub |
 | **M04** | Getting Lost in the App | M02 | ~3–4h | Stub |
@@ -131,10 +131,10 @@ Cold client (Alex) understands the single next action within ~10 seconds; chrome
 - Hidden advanced nav until first task complete (toggleable demo state)
 
 ### Acceptance criteria
-- [ ] New-client home has one dominant next action
-- [ ] Secondary tasks visible but visually subordinate
-- [ ] Demo control or state for “onboarding done” home
-- [ ] Works for Alex; Sam home can reuse pattern with business copy
+- [x] New-client home has one dominant next action
+- [x] Secondary tasks visible but visually subordinate
+- [x] Demo control or state for “onboarding done” home
+- [x] Works for Alex; Sam home can reuse pattern with business copy (pattern shared; Sam off picker for now)
 
 ---
 

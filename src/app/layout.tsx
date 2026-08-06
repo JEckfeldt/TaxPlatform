@@ -17,7 +17,7 @@ const mono = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Ledgerline — Tax platform prototype",
+  title: "GreenGrowth — Tax platform prototype",
   description:
     "AI-powered client & CPA tax platform case study prototype. Frontend UX demo with simulated data and AI.",
 };

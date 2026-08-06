@@ -16,39 +16,39 @@ export default function PersonaPickerPage() {
   const { personas, selectPersona } = usePersona();
 
   return (
-    <main className="mx-auto flex w-full max-w-3xl flex-1 flex-col justify-center px-4 py-16 sm:px-6">
-      <div className="mb-10 space-y-3">
+    <main className="mx-auto flex w-full max-w-5xl flex-1 flex-col justify-center px-4 py-10 sm:px-6 sm:py-16">
+      <div className="mb-8 space-y-3 sm:mb-10">
         <p className="text-primary text-sm font-semibold tracking-wide uppercase">
-          Ledgerline
+          GreenGrowth
         </p>
         <h1 className="text-4xl font-semibold tracking-tight sm:text-5xl">
-          Continue as a demo persona
+          Continue as…
         </h1>
-        <p className="text-muted-foreground max-w-xl text-lg leading-relaxed">
-          Light persona picker for the case study — no real auth. Pick a role to
-          enter the client or firm shell.
+        <p className="text-muted-foreground max-w-2xl text-base leading-relaxed sm:text-lg">
+          Demo picker — no real login. Choose a client or CPA path.
         </p>
       </div>
 
-      <div className="grid gap-3">
+      <div className="grid w-full gap-3 sm:grid-cols-2">
         {personas.map((persona) => (
           <Card
             key={persona.id}
-            className="transition-shadow hover:shadow-md"
+            className="flex flex-col transition-shadow hover:shadow-md"
           >
-            <CardHeader className="flex flex-row items-start justify-between gap-4 space-y-0 pb-2">
-              <div className="space-y-1">
-                <CardTitle className="text-lg">{persona.name}</CardTitle>
-                <CardDescription>{persona.description}</CardDescription>
-              </div>
-              <Badge variant="secondary">{persona.title}</Badge>
+            <CardHeader className="space-y-2">
+              <Badge variant="secondary" className="w-fit">
+                {persona.pickerLabel ?? persona.title}
+              </Badge>
+              <CardTitle className="text-xl">{persona.name}</CardTitle>
+              <CardDescription>{persona.description}</CardDescription>
             </CardHeader>
-            <CardContent>
+            <CardContent className="mt-auto">
               <Button
                 onClick={() => selectPersona(persona.id as PersonaId)}
-                className="w-full sm:w-auto"
+                className="w-full"
+                size="lg"
               >
-                Continue as {persona.name.split(" ")[0]}
+                Continue as {persona.pickerLabel ?? persona.name.split(" ")[0]}
               </Button>
             </CardContent>
           </Card>

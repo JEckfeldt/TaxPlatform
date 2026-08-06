@@ -51,6 +51,7 @@ export const TASKS: Task[] = [
     owner: "client",
     documentId: "doc-alex-w2",
     urgency: "high",
+    sortOrder: 1,
   },
   {
     id: "task-alex-questionnaire",
@@ -60,6 +61,7 @@ export const TASKS: Task[] = [
     status: "todo",
     owner: "client",
     urgency: "medium",
+    sortOrder: 2,
   },
 ];
 

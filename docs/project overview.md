@@ -34,10 +34,11 @@ Greenfield AI-powered client & CPA tax platform for the AI Engineer case study. 
 | Time budget | 36–48 hours (prototype + video) |
 | Walkthrough hero | Client-first, then switch into CPA |
 | Sample data | Mixed — individual 1040 + small-business return(s) |
-| Visual tone | Calm professional / fintech (document-review density on CPA surfaces) |
+| Product name | GreenGrowth |
+| Visual tone | Soft off-white + forest/sage greens; document-review density on CPA surfaces |
 | Stack | Next.js (App Router) + TypeScript |
 | Demo auth | Light persona picker + in-app role switch |
-| UI | shadcn/ui + custom theme (avoid generic SaaS defaults) |
+| UI | shadcn/ui + custom GreenGrowth theme |
 | Hosting | Vercel Hobby (free) |
 | Video | 5–10 minutes max |
 

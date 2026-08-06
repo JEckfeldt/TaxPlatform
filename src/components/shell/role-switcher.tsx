@@ -35,8 +35,12 @@ export function RoleSwitcher() {
             className={persona?.id === p.id ? "bg-accent" : undefined}
           >
             <div className="flex flex-col gap-0.5">
-              <span className="font-medium">{p.name}</span>
-              <span className="text-muted-foreground text-xs">{p.title}</span>
+              <span className="font-medium">
+                {p.pickerLabel ?? p.title} · {p.name}
+              </span>
+              <span className="text-muted-foreground text-xs">
+                {p.description}
+              </span>
             </div>
           </DropdownMenuItem>
         ))}

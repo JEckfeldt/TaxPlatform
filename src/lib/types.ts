@@ -33,6 +33,8 @@ export type PersonaId =
   | "jordan-personal"
   | "riley";
 
+export type ClientHomeMode = "first_run" | "settled";
+
 export interface Persona {
   id: PersonaId;
   name: string;
@@ -40,8 +42,25 @@ export interface Persona {
   role: Role;
   shell: Shell;
   description: string;
+  /** Shown on the landing picker / role switcher. */
+  showInPicker: boolean;
+  /** Short label for picker cards (e.g. Client, CPA). */
+  pickerLabel?: string;
   /** When set, switching here also activates a secondary context (e.g. personal return). */
   secondaryLabel?: string;
+}
+
+export interface Task {
+  id: string;
+  returnId: string;
+  title: string;
+  description: string;
+  status: "todo" | "in_progress" | "done";
+  owner: "client" | "preparer";
+  documentId?: string;
+  urgency: "low" | "medium" | "high";
+  /** Lower runs first for next-action selection. */
+  sortOrder?: number;
 }
 
 export interface TaxReturn {
@@ -55,17 +74,6 @@ export interface TaxReturn {
   nextAction: string;
   nextActionOwner: "client" | "preparer" | "reviewer";
   blockers: string[];
-}
-
-export interface Task {
-  id: string;
-  returnId: string;
-  title: string;
-  description: string;
-  status: "todo" | "in_progress" | "done";
-  owner: "client" | "preparer";
-  documentId?: string;
-  urgency: "low" | "medium" | "high";
 }
 
 export interface Document {
