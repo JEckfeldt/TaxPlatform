@@ -33,8 +33,6 @@ export type PersonaId =
   | "jordan-personal"
   | "riley";
 
-export type ClientHomeMode = "first_run" | "settled";
-
 export interface Persona {
   id: PersonaId;
   name: string;
@@ -44,8 +42,6 @@ export interface Persona {
   description: string;
   /** Shown on the landing persona picker. */
   showInPicker: boolean;
-  /** Shown in the in-app role switcher. */
-  showInSwitcher: boolean;
   /** Short label for picker cards (e.g. Client, CPA). */
   pickerLabel?: string;
   /** When set, switching here also activates a secondary context (e.g. personal return). */

@@ -26,10 +26,6 @@ export function getPrimaryTask(tasks: Task[]): Task | undefined {
   return tasks.find((t) => t.status !== "done");
 }
 
-export function getSecondaryTasks(tasks: Task[], primary?: Task): Task[] {
-  return tasks.filter((t) => t.id !== primary?.id);
-}
-
 export function getTaskProgress(tasks: Task[]): {
   done: number;
   total: number;
@@ -45,5 +41,3 @@ export function clientFriendlyStatus(
   const view = buildStatusView(taxReturn, "client");
   return view?.headline ?? "Getting started";
 }
-
-export const CLIENT_HOME_MODE_KEY = "greengrowth_client_home_mode";

@@ -21,7 +21,7 @@ export default function PersonaPickerPage() {
         </p>
       </div>
 
-      <div className="grid w-full gap-4 sm:grid-cols-2">
+      <div className="grid w-full gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {personas.map((persona) => (
           <div
             key={persona.id}

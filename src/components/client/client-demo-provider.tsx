@@ -4,24 +4,15 @@ import {
   createContext,
   useCallback,
   useContext,
-  useEffect,
   useMemo,
   useState,
   type ReactNode,
 } from "react";
-import { CLIENT_HOME_MODE_KEY } from "@/lib/client-home";
 import { RETURNS, TASKS, THREADS } from "@/lib/fixtures/seed";
 import { deriveReturnFromClientTasks } from "@/lib/return-status";
-import type {
-  ClientHomeMode,
-  MessageThread,
-  Task,
-  TaxReturn,
-} from "@/lib/types";
+import type { MessageThread, Task, TaxReturn } from "@/lib/types";
 
 type ClientDemoContextValue = {
-  homeMode: ClientHomeMode;
-  setHomeMode: (mode: ClientHomeMode) => void;
   tasks: Task[];
   returns: TaxReturn[];
   threads: MessageThread[];
@@ -55,32 +46,11 @@ function syncReturnsToTasks(returns: TaxReturn[], tasks: Task[]): TaxReturn[] {
 }
 
 export function ClientDemoProvider({ children }: { children: ReactNode }) {
-  const [homeMode, setHomeModeState] = useState<ClientHomeMode>("first_run");
   const [tasks, setTasks] = useState<Task[]>(cloneTasks);
   const [returns, setReturns] = useState<TaxReturn[]>(() =>
     syncReturnsToTasks(cloneReturns(), cloneTasks()),
   );
   const [threads, setThreads] = useState<MessageThread[]>(cloneThreads);
-
-  useEffect(() => {
-    try {
-      const stored = localStorage.getItem(CLIENT_HOME_MODE_KEY);
-      if (stored === "first_run" || stored === "settled") {
-        setHomeModeState(stored);
-      }
-    } catch {
-      // default first_run
-    }
-  }, []);
-
-  const setHomeMode = useCallback((mode: ClientHomeMode) => {
-    setHomeModeState(mode);
-    try {
-      localStorage.setItem(CLIENT_HOME_MODE_KEY, mode);
-    } catch {
-      // ignore
-    }
-  }, []);
 
   const getTask = useCallback(
     (id: string) => tasks.find((t) => t.id === id),
@@ -141,8 +111,6 @@ export function ClientDemoProvider({ children }: { children: ReactNode }) {
 
   const value = useMemo(
     () => ({
-      homeMode,
-      setHomeMode,
       tasks,
       returns,
       threads,
@@ -154,8 +122,6 @@ export function ClientDemoProvider({ children }: { children: ReactNode }) {
       resetDemoData,
     }),
     [
-      homeMode,
-      setHomeMode,
       tasks,
       returns,
       threads,

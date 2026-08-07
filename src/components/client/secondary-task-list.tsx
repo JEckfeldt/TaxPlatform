@@ -8,7 +8,7 @@ export function SecondaryTaskList({ tasks }: { tasks: Task[] }) {
   return (
     <div className="space-y-2">
       <h2 className="text-muted-foreground text-xs font-medium tracking-wide uppercase">
-        Also on your list
+        Your to-dos
       </h2>
       <ul className="divide-border/80 border-border/80 divide-y rounded-lg border">
         {tasks.map((task) => {

@@ -12,7 +12,7 @@ Living snapshot of what exists in the codebase. Update this file whenever featur
 
 | | |
 | --- | --- |
-| **Done recently** | UI refresh (theme + de-card); Jordan dual-context; M09–M10 firm path |
+| **Done recently** | Removed navbar persona dropdown; unified client home; UI refresh |
 | **Next up** | M11 ship (deploy + video); optional Riley/extra role lenses |
 | **Blocked** | None |
 
@@ -24,7 +24,7 @@ Living snapshot of what exists in the codebase. Update this file whenever featur
 | --- | --- | --- | --- |
 | M0 | Foundation | Done | Next.js + shadcn + shells + seed |
 | M05 | Role-Aware Experiences | Partial | Dual-context done; Riley / ≥4 lenses deferred |
-| M03 | Where to Start | Done | W-2 hero, demo First-run/Settled toggle, fake upload loop |
+| M03 | Where to Start | Done | W-2 what’s-next home; Home + Messages always in nav |
 | M06 | Return Status & Progress | Done | Client timeline; firm strip still light |
 | M02 | Client & CPA Collaboration | Done | Client threads + replies + home requests; firm UI deferred |
 | M04 | Getting Lost in the App | Done | Breadcrumbs, related links, Back to home |
@@ -39,10 +39,9 @@ Living snapshot of what exists in the codebase. Update this file whenever featur
 
 ## What’s shipped (clickable)
 
-- Persona picker — Client (Alex) + CPA (Jordan)
-- Role switcher — Alex, Jordan CPA, Jordan · Personal filing
-- Full client loop — home, status, requests, tasks, docs, messages/replies
-- Jordan personal return — settled client home + context banner + dependents task
+- Persona picker — Alex, Jordan CPA, Jordan · Personal filing (header links back to `/`)
+- Full client loop — home, status, requests, tasks, docs, messages/replies (Home + Messages always in nav)
+- Jordan personal return — same what’s-next home + context banner + dependents task
 - CPA dashboard — ~150 returns, dense list rows, search, entity + segment filters
 - CPA return review (Alex) — field affordances, W-2 source trace, AI explain/correct
 - Other firm returns — callout linking to Alex demo path
@@ -102,6 +101,8 @@ Living snapshot of what exists in the codebase. Update this file whenever featur
 
 ### 2026-08-07
 
+- Removed navbar role-switcher dropdown; Jordan personal moved onto landing picker
+- Unified client home: removed First-run/Settled demo toggle; Home + Messages always visible; full to-do list
 - UI refresh: sharper GreenGrowth tokens, Sora display titles, de-carded firm queue and client sections
 
 ### 2026-08-06
