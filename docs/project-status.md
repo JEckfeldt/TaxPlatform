@@ -12,8 +12,8 @@ Living snapshot of what exists in the codebase. Update this file whenever featur
 
 | | |
 | --- | --- |
-| **Done recently** | M08+M01+M10 CPA return review (Alex); M07 dashboard |
-| **Next up** | M09 complexity/search; M05 polish; M11 ship |
+| **Done recently** | M09 queue scale/search; M08+M01+M10 return review; M07 dashboard |
+| **Next up** | M05 polish; M11 ship (deploy + video) |
 | **Blocked** | None |
 
 ---
@@ -28,11 +28,11 @@ Living snapshot of what exists in the codebase. Update this file whenever featur
 | M06 | Return Status & Progress | Done | Client timeline; firm strip still light |
 | M02 | Client & CPA Collaboration | Done | Client threads + replies + home requests; firm UI deferred |
 | M04 | Getting Lost in the App | Done | Breadcrumbs, related links, Back to home |
-| M07 | An Actionable Dashboard | Done | ~50 returns, urgency rank, segment chips |
+| M07 | An Actionable Dashboard | Done | Urgency rank, segment chips |
 | M08 | Clickable vs. Editable | Done | Six field states on Alex review + dashboard chips |
 | M01 | Source Document Traceability | Done | Fake W-2 highlight in side panel |
 | M10 | Trustworthy AI | Done | `simulateAI` stub; accept / edit / reject |
-| M09 | Complexity Made Navigable | Stub | Dashboard scale started; deep search later |
+| M09 | Complexity Made Navigable | Done | ~150 returns; name search + entity chips |
 | M11 | Ship | Not started | Not deployed; no video yet |
 
 ---
@@ -41,7 +41,7 @@ Living snapshot of what exists in the codebase. Update this file whenever featur
 
 - Persona picker — Client (Alex) + CPA (Jordan)
 - Full client loop — home, status, requests, tasks, docs, messages/replies
-- CPA dashboard — ranked queue, segments, ~50 simulated returns, light AI/Blocked chips
+- CPA dashboard — ~150 returns, urgency rank, search, entity + segment filters, AI/Blocked chips
 - CPA return review (Alex) — field affordances, W-2 source trace, AI explain/correct
 - Other firm returns — callout linking to Alex demo path
 - Brand/theme — GreenGrowth; soft off-white + forest/sage
@@ -54,8 +54,8 @@ Living snapshot of what exists in the codebase. Update this file whenever featur
 | --- | --- |
 | Auth | Persona cookie + picker |
 | Client tasks / messages / return stage | In-memory session |
-| Firm return catalog | 3 named + 47 deterministic generated |
-| Urgency ranking | Heuristic score in `firm-queue.ts` |
+| Firm return catalog | 3 named + 147 deterministic generated (~150) |
+| Urgency ranking / queue filters | Heuristics in `firm-queue.ts` |
 | Field review / AI / W-2 highlight | Seeded fields + `simulateAI`; session-only edits |
 | Documents / OCR / tax engine | Not real |
 
@@ -71,7 +71,7 @@ Living snapshot of what exists in the codebase. Update this file whenever featur
 | `/client/documents/[id]` | Document stub |
 | `/client/messages` | Thread list |
 | `/client/messages/[id]` | Thread + reply |
-| `/firm/dashboard` | CPA work queue |
+| `/firm/dashboard` | CPA work queue (search + filters) |
 | `/firm/returns/ret-alex-2025` | Deep return review (M08/M01/M10) |
 | `/firm/returns/[id]` | Other returns — header + link to Alex demo |
 
@@ -89,6 +89,7 @@ Living snapshot of what exists in the codebase. Update this file whenever featur
 | [implementations/client-collab-navigation.md](./implementations/client-collab-navigation.md) | M02+M04 |
 | [implementations/cpa-actionable-dashboard.md](./implementations/cpa-actionable-dashboard.md) | M07 (implemented) |
 | [implementations/cpa-return-review.md](./implementations/cpa-return-review.md) | M08+M01+M10 (implemented) |
+| [implementations/cpa-queue-scale-search.md](./implementations/cpa-queue-scale-search.md) | M09 (implemented) |
 | [AI_Engineer_Case_Study_Updated.pdf](./AI_Engineer_Case_Study_Updated.pdf) | Case study |
 
 ---
@@ -97,9 +98,11 @@ Living snapshot of what exists in the codebase. Update this file whenever featur
 
 ### 2026-08-06
 
+- Implemented M09: ~150 firm returns, client-name search, entity chips, Showing X of Y
+- Wrote M09 plan: `docs/implementations/cpa-queue-scale-search.md`
 - Implemented M08+M01+M10: Alex return review workspace, fake W-2 trace, `simulateAI`, dashboard chips
 - Wrote return-review plan: `docs/implementations/cpa-return-review.md`
-- Implemented M07: firm work queue with ~50 returns, urgency ranking, segment filters
+- Implemented M07: firm work queue with urgency ranking, segment filters
 - Wrote M07 plan: `docs/implementations/cpa-actionable-dashboard.md`
 - Implemented M02+M04 client collab/navigation
 - Implemented M06 client return status timeline

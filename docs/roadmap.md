@@ -34,7 +34,7 @@ Product UI name: **GreenGrowth**. Rough delivery roadmap for the case study prot
 | **M08** | Clickable vs. Editable | M07 | ~3–4h | **Done** (Alex review + dashboard chips) |
 | **M01** | Source Document Traceability | M08 | ~5–6h | **Done** (fake W-2 side panel) |
 | **M10** | Trustworthy AI | M01, M08 | ~4–5h | **Done** (`simulateAI` + accept/edit/reject) |
-| **M09** | Complexity Made Navigable | M07, M01 | ~4–5h | Stub |
+| **M09** | Complexity Made Navigable | M07, M01 | ~4–5h | **Done** (~150 returns + search/entity) |
 | **M11** | Ship (README, deploy, video) | All | ~3–4h | Not started |
 
 Suggested order above follows the **client-first demo narrative**, then firm depth. Parallelizable after M05: client track (M03→M06→M02→M04) and firm track (M07→M08→M01→M10), merge for M09/M11.
@@ -301,10 +301,10 @@ Deep professional workspace stays approachable via progressive disclosure, searc
 - Reducing real tax complexity itself
 
 ### Acceptance criteria
-- [ ] Large fixture set (hundreds of items or returns)
-- [ ] Search + filters return useful subsets
-- [ ] Summary vs detail views
-- [ ] Move from high-level review to source-level detail without losing return context
+- [x] Large fixture set (hundreds of items or returns)
+- [x] Search + filters return useful subsets
+- [x] Summary vs detail views
+- [x] Move from high-level review to source-level detail without losing return context
 
 ---
 

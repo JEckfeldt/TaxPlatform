@@ -126,9 +126,9 @@ export function returnForPersona(personaId: string): TaxReturn | undefined {
   return undefined;
 }
 
-/** Named seeds + deterministic generated returns (~50 total). */
+/** Named seeds + deterministic generated returns (~150 total). */
 export function getFirmReturns(): TaxReturn[] {
-  const generated = generateFirmReturns(47);
+  const generated = generateFirmReturns(147);
   const byId = new Map<string, TaxReturn>();
   for (const item of [...RETURNS, ...generated]) {
     byId.set(item.id, item);

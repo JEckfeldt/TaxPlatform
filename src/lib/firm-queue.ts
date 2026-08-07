@@ -64,6 +64,34 @@ export const QUEUE_SEGMENTS: {
   { id: "needs_prep", label: "Needs prep" },
 ];
 
+export type EntityFilter = "all" | "individual" | "business";
+
+export const ENTITY_FILTERS: {
+  id: EntityFilter;
+  label: string;
+}[] = [
+  { id: "all", label: "All entities" },
+  { id: "individual", label: "Individual" },
+  { id: "business", label: "Business" },
+];
+
+export function filterByQuery(
+  returns: TaxReturn[],
+  query: string,
+): TaxReturn[] {
+  const q = query.trim().toLowerCase();
+  if (!q) return returns;
+  return returns.filter((r) => r.clientName.toLowerCase().includes(q));
+}
+
+export function filterByEntity(
+  returns: TaxReturn[],
+  entity: EntityFilter,
+): TaxReturn[] {
+  if (entity === "all") return returns;
+  return returns.filter((r) => r.entityType === entity);
+}
+
 export function filterBySegment(
   returns: TaxReturn[],
   segment: QueueSegment,
@@ -91,6 +119,15 @@ export function filterBySegment(
     default:
       return returns;
   }
+}
+
+/** Apply entity + name search before segment breakdown / ranking. */
+export function filterBySearchAndEntity(
+  returns: TaxReturn[],
+  query: string,
+  entity: EntityFilter,
+): TaxReturn[] {
+  return filterByQuery(filterByEntity(returns, entity), query);
 }
 
 export function segmentCounts(

@@ -10,19 +10,21 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
 import {
+  ENTITY_FILTERS,
   QUEUE_SEGMENTS,
   computeUrgency,
+  filterBySearchAndEntity,
   filterBySegment,
   ownerLabel,
   rankReturns,
   segmentCounts,
+  type EntityFilter,
   type QueueSegment,
 } from "@/lib/firm-queue";
 import { ALEX_RETURN_ID } from "@/lib/fixtures/return-fields";
-import {
-  fieldStateBadgeClasses,
-} from "@/lib/field-affordances";
+import { fieldStateBadgeClasses } from "@/lib/field-affordances";
 import type { TaxReturn } from "@/lib/types";
 import { cn } from "@/lib/utils";
 
@@ -45,15 +47,61 @@ function rowChips(item: TaxReturn) {
 
 export function WorkQueue({ returns }: { returns: TaxReturn[] }) {
   const [segment, setSegment] = useState<QueueSegment>("all");
+  const [query, setQuery] = useState("");
+  const [entity, setEntity] = useState<EntityFilter>("all");
 
-  const counts = useMemo(() => segmentCounts(returns, "jordan"), [returns]);
+  const scoped = useMemo(
+    () => filterBySearchAndEntity(returns, query, entity),
+    [returns, query, entity],
+  );
+
+  const counts = useMemo(
+    () => segmentCounts(scoped, "jordan"),
+    [scoped],
+  );
+
   const ranked = useMemo(() => {
-    const filtered = filterBySegment(returns, segment, "jordan");
+    const filtered = filterBySegment(scoped, segment, "jordan");
     return rankReturns(filtered);
-  }, [returns, segment]);
+  }, [scoped, segment]);
+
+  const queryActive = query.trim().length > 0;
 
   return (
     <div className="space-y-6">
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
+        <Input
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          placeholder="Search clients"
+          aria-label="Search clients"
+          className="sm:max-w-xs"
+        />
+        {queryActive ? (
+          <Button
+            type="button"
+            size="sm"
+            variant="ghost"
+            onClick={() => setQuery("")}
+          >
+            Clear search
+          </Button>
+        ) : null}
+      </div>
+
+      <div className="flex flex-wrap gap-2">
+        {ENTITY_FILTERS.map((item) => (
+          <Button
+            key={item.id}
+            size="sm"
+            variant={entity === item.id ? "default" : "outline"}
+            onClick={() => setEntity(item.id)}
+          >
+            {item.label}
+          </Button>
+        ))}
+      </div>
+
       <div className="flex flex-wrap gap-2">
         {QUEUE_SEGMENTS.map((item) => (
           <Button
@@ -70,9 +118,13 @@ export function WorkQueue({ returns }: { returns: TaxReturn[] }) {
         ))}
       </div>
 
+      <p className="text-muted-foreground text-sm tabular-nums">
+        Showing {ranked.length} of {returns.length}
+      </p>
+
       {ranked.length === 0 ? (
         <p className="text-muted-foreground text-sm">
-          No returns in this segment.
+          No returns match your search/filters.
         </p>
       ) : (
         <div className="grid gap-3">

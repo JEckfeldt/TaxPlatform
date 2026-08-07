@@ -117,9 +117,9 @@ function pick<T>(rand: () => number, items: T[]): T {
 
 /**
  * Deterministic synthetic returns for the firm work queue.
- * Count chosen so named seeds + generated ≈ 50 total.
+ * Count chosen so named seeds + generated ≈ 150 total.
  */
-export function generateFirmReturns(count = 47): TaxReturn[] {
+export function generateFirmReturns(count = 147): TaxReturn[] {
   const rand = mulberry32(20260312);
   const out: TaxReturn[] = [];
 
