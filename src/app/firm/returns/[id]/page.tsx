@@ -1,7 +1,10 @@
 import Link from "next/link";
 import { MilestoneStub } from "@/components/shell/milestone-stub";
 import { Badge } from "@/components/ui/badge";
-import { RETURNS, THREADS } from "@/lib/fixtures/seed";
+import { buttonVariants } from "@/components/ui/button";
+import { getFirmReturn, THREADS } from "@/lib/fixtures/seed";
+import { firmStatusLabel } from "@/lib/return-status";
+import { cn } from "@/lib/utils";
 
 export default async function ReturnWorkspacePage({
   params,
@@ -9,8 +12,22 @@ export default async function ReturnWorkspacePage({
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
-  const taxReturn = RETURNS.find((r) => r.id === id);
+  const taxReturn = getFirmReturn(id);
   const threads = THREADS.filter((t) => t.returnId === id);
+
+  if (!taxReturn) {
+    return (
+      <div className="space-y-4">
+        <p className="text-muted-foreground">Return not found.</p>
+        <Link
+          href="/firm/dashboard"
+          className={cn(buttonVariants())}
+        >
+          Back to dashboard
+        </Link>
+      </div>
+    );
+  }
 
   return (
     <div className="space-y-8">
@@ -19,22 +36,35 @@ export default async function ReturnWorkspacePage({
           Dashboard
         </Link>
         <span>/</span>
-        <span className="text-foreground">
-          {taxReturn?.clientName ?? "Return"}
-        </span>
+        <span className="text-foreground">{taxReturn.clientName}</span>
       </div>
 
-      <div className="space-y-2">
-        <h1 className="text-3xl font-semibold tracking-tight">
-          {taxReturn?.clientName} · {taxReturn?.taxYear}
-        </h1>
-        <div className="flex flex-wrap items-center gap-2">
-          <Badge>{taxReturn?.status.replaceAll("_", " ")}</Badge>
-          <Badge variant="secondary">{taxReturn?.entityType}</Badge>
-          <span className="text-muted-foreground text-sm">
-            Next: {taxReturn?.nextAction}
-          </span>
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+        <div className="space-y-2">
+          <h1 className="text-3xl font-semibold tracking-tight">
+            {taxReturn.clientName} · {taxReturn.taxYear}
+          </h1>
+          <div className="flex flex-wrap items-center gap-2">
+            <Badge>{firmStatusLabel(taxReturn.status)}</Badge>
+            <Badge variant="secondary" className="capitalize">
+              {taxReturn.entityType}
+            </Badge>
+          </div>
+          <p className="text-muted-foreground text-sm">
+            Next: {taxReturn.nextAction}
+          </p>
+          {taxReturn.blockers[0] ? (
+            <p className="text-destructive text-sm">
+              Blocked: {taxReturn.blockers.join(" · ")}
+            </p>
+          ) : null}
         </div>
+        <Link
+          href="/firm/dashboard"
+          className={cn(buttonVariants({ variant: "outline", size: "sm" }))}
+        >
+          Back to dashboard
+        </Link>
       </div>
 
       <div className="grid gap-3 md:grid-cols-2">
@@ -51,7 +81,7 @@ export default async function ReturnWorkspacePage({
         <MilestoneStub
           milestone="M06 · Status"
           title="Shared progress language"
-          summary="Status strip should match client-facing meaning with appropriate detail."
+          summary="Firm status strip can reuse client stage helpers with more detail."
         />
         <MilestoneStub
           milestone="M09 · Complexity"
@@ -69,7 +99,9 @@ export default async function ReturnWorkspacePage({
               <span className="text-foreground">({t.visibility})</span>
             </li>
           ))}
-          {threads.length === 0 ? <li>No threads seeded yet.</li> : null}
+          {threads.length === 0 ? (
+            <li>No threads seeded for this return.</li>
+          ) : null}
         </ul>
       </div>
     </div>

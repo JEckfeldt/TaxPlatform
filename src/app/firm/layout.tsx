@@ -2,7 +2,7 @@ import { AppHeader } from "@/components/shell/app-header";
 
 const nav = [
   { href: "/firm/dashboard", label: "Dashboard" },
-  { href: "/firm/returns/ret-alex-2025", label: "Sample return" },
+  { href: "/firm/returns/ret-alex-2025", label: "Alex return" },
 ];
 
 export default function FirmLayout({

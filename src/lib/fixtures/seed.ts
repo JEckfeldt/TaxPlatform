@@ -1,6 +1,7 @@
+import { generateFirmReturns } from "@/lib/fixtures/generate-returns";
 import type { Document, MessageThread, Task, TaxReturn } from "@/lib/types";
 
-/** Minimal seed data for the scaffold. Expand per milestone. */
+/** Named demo returns (also included in the firm catalog). */
 export const RETURNS: TaxReturn[] = [
   {
     id: "ret-alex-2025",
@@ -123,4 +124,18 @@ export function returnForPersona(personaId: string): TaxReturn | undefined {
   if (personaId === "jordan-personal")
     return RETURNS.find((r) => r.id === "ret-jordan-personal-2025");
   return undefined;
+}
+
+/** Named seeds + deterministic generated returns (~50 total). */
+export function getFirmReturns(): TaxReturn[] {
+  const generated = generateFirmReturns(47);
+  const byId = new Map<string, TaxReturn>();
+  for (const item of [...RETURNS, ...generated]) {
+    byId.set(item.id, item);
+  }
+  return [...byId.values()];
+}
+
+export function getFirmReturn(id: string): TaxReturn | undefined {
+  return getFirmReturns().find((r) => r.id === id);
 }

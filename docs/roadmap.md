@@ -30,7 +30,7 @@ Product UI name: **GreenGrowth**. Rough delivery roadmap for the case study prot
 | **M06** | Return Status & Progress | M03 | ~3–4h | **Done** (client-only) |
 | **M02** | Client & CPA Collaboration | M03 | ~4–5h | **Done** (client; firm deferred) |
 | **M04** | Getting Lost in the App | M02 | ~3–4h | **Done** (client loop) |
-| **M07** | An Actionable Dashboard | M05 | ~4–5h | Stub |
+| **M07** | An Actionable Dashboard | M05 | ~4–5h | **Done** |
 | **M08** | Clickable vs. Editable | M07 | ~3–4h | Not started |
 | **M01** | Source Document Traceability | M08 | ~5–6h | Stub |
 | **M10** | Trustworthy AI | M01, M08 | ~4–5h | Not started |
@@ -220,10 +220,10 @@ CPA landing answers “what should I work on right now?” with ranking, drill-i
 - Perfect manager analytics suite
 
 ### Acceptance criteria
-- [ ] Ranked work items with clear next action
-- [ ] Click-through into return workspace
-- [ ] Filter or segment (e.g. my returns / blocked / awaiting client)
-- [ ] Batch of fake returns (≥30; prefer 100+ for M09 synergy)
+- [x] Ranked work items with clear next action
+- [x] Click-through into return workspace
+- [x] Filter or segment (All / My returns / Waiting on client / Blocked / Needs prep)
+- [x] Batch of fake returns (~50; 100+ deferred to M09)
 
 ---
 

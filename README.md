@@ -30,7 +30,8 @@ Open [http://localhost:3000](http://localhost:3000), pick a demo persona, and ex
 | --- | --- |
 | Clickable Next.js UI, routing, persona cookie | Auth / RBAC |
 | Seeded returns, tasks, documents, threads | OCR / document parsing |
-| Simple urgency sort on the firm dashboard | Tax calculation engine |
+| Firm work queue ranking + segment filters | Tax calculation engine |
+| ~50 firm returns (3 named + generated) | Real practice management data |
 | — | LLM / extraction / confidence (stubs come in later milestones) |
 
 ## Demo personas
