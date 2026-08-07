@@ -42,8 +42,10 @@ export interface Persona {
   role: Role;
   shell: Shell;
   description: string;
-  /** Shown on the landing picker / role switcher. */
+  /** Shown on the landing persona picker. */
   showInPicker: boolean;
+  /** Shown in the in-app role switcher. */
+  showInSwitcher: boolean;
   /** Short label for picker cards (e.g. Client, CPA). */
   pickerLabel?: string;
   /** When set, switching here also activates a secondary context (e.g. personal return). */

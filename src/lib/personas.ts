@@ -9,6 +9,7 @@ export const PERSONAS: Persona[] = [
     shell: "client",
     description: "First-time filer with a personal 1040. Cold start demo.",
     showInPicker: true,
+    showInSwitcher: true,
     pickerLabel: "Client",
   },
   {
@@ -19,6 +20,7 @@ export const PERSONAS: Persona[] = [
     shell: "client",
     description: "Small-business return in progress. Mixed-entity demo.",
     showInPicker: false,
+    showInSwitcher: false,
     pickerLabel: "Client",
   },
   {
@@ -29,6 +31,7 @@ export const PERSONAS: Persona[] = [
     shell: "firm",
     description: "Default CPA path — dashboard, review, collaboration.",
     showInPicker: true,
+    showInSwitcher: true,
     pickerLabel: "CPA",
   },
   {
@@ -39,6 +42,7 @@ export const PERSONAS: Persona[] = [
     shell: "client",
     description: "Same person in client context for their own return.",
     showInPicker: false,
+    showInSwitcher: true,
     secondaryLabel: "Personal filing",
   },
   {
@@ -49,6 +53,7 @@ export const PERSONAS: Persona[] = [
     shell: "firm",
     description: "Review-focused nav and reduced edit permissions.",
     showInPicker: false,
+    showInSwitcher: false,
     pickerLabel: "CPA",
   },
 ];
@@ -61,6 +66,14 @@ export function getPickerPersonas(): Persona[] {
   return PERSONAS.filter((p) => p.showInPicker);
 }
 
+export function getSwitcherPersonas(): Persona[] {
+  return PERSONAS.filter((p) => p.showInSwitcher);
+}
+
 export function homePathForPersona(persona: Persona): string {
   return persona.shell === "client" ? "/client/home" : "/firm/dashboard";
+}
+
+export function switcherLabel(persona: Persona): string {
+  return persona.secondaryLabel ?? persona.pickerLabel ?? persona.title;
 }

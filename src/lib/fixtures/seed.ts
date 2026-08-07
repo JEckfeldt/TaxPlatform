@@ -64,6 +64,17 @@ export const TASKS: Task[] = [
     urgency: "medium",
     sortOrder: 2,
   },
+  {
+    id: "task-jordan-dependents",
+    returnId: "ret-jordan-personal-2025",
+    title: "Confirm dependents",
+    description:
+      "Confirm who you can claim for 2025 so Riley can finish your personal return.",
+    status: "todo",
+    owner: "client",
+    urgency: "high",
+    sortOrder: 1,
+  },
 ];
 
 export const DOCUMENTS: Document[] = [

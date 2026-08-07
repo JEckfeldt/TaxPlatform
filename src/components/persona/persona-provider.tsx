@@ -12,6 +12,7 @@ import { useRouter } from "next/navigation";
 import {
   getPersona,
   getPickerPersonas,
+  getSwitcherPersonas,
   homePathForPersona,
 } from "@/lib/personas";
 import { PERSONA_COOKIE } from "@/lib/persona-cookie";
@@ -19,8 +20,10 @@ import type { Persona, PersonaId } from "@/lib/types";
 
 type PersonaContextValue = {
   persona: Persona | null;
-  /** Personas shown on landing + role switcher (currently Client + CPA). */
+  /** Personas on the landing picker (Alex + Jordan CPA). */
   personas: Persona[];
+  /** Personas in the in-app role switcher (includes Jordan personal). */
+  switcherPersonas: Persona[];
   selectPersona: (id: PersonaId) => void;
   clearPersona: () => void;
 };
@@ -74,6 +77,7 @@ export function PersonaProvider({
     () => ({
       persona,
       personas: getPickerPersonas(),
+      switcherPersonas: getSwitcherPersonas(),
       selectPersona,
       clearPersona,
     }),

@@ -24,13 +24,16 @@ export default function ClientHomePage() {
   const { persona } = usePersona();
   const { tasks, homeMode, getReturn, threads } = useClientDemo();
 
+  const isJordanPersonal = persona?.id === "jordan-personal";
+  const effectiveHomeMode = isJordanPersonal ? "settled" : homeMode;
+
   if (persona && persona.shell !== "client") {
     return (
       <div className="space-y-3 py-12">
         <h1 className="text-2xl font-semibold tracking-tight">Client home</h1>
         <p className="text-muted-foreground">
-          Switch to Alex (Client) in the persona menu to walk the first-run
-          demo.
+          Switch to a client persona (Alex, or Jordan · Personal filing) in the
+          persona menu to view this screen.
         </p>
       </div>
     );
@@ -50,13 +53,23 @@ export default function ClientHomePage() {
 
   return (
     <div className="space-y-6 sm:space-y-8">
+      {isJordanPersonal ? (
+        <div className="border-border/80 bg-muted/40 rounded-xl border px-4 py-3 text-sm">
+          <p className="font-medium">Personal filing context</p>
+          <p className="text-muted-foreground mt-1">
+            You&apos;re viewing your personal return — not the firm work queue.
+            Use the persona menu to switch back to Jordan (CPA).
+          </p>
+        </div>
+      ) : null}
+
       <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
         <div className="min-w-0 flex-1 space-y-2">
           <p className="text-muted-foreground text-sm">
             {persona?.name ?? "Alex Rivera"} · {taxReturn?.taxYear} return
           </p>
           <h1 className="text-3xl font-semibold tracking-tight sm:text-4xl">
-            {homeMode === "first_run"
+            {effectiveHomeMode === "first_run"
               ? "Let's get your return started"
               : "Your return"}
           </h1>
@@ -64,7 +77,9 @@ export default function ClientHomePage() {
             <Badge variant="secondary">{status}</Badge>
           </div>
         </div>
-        <HomeModeToggle className="w-full sm:w-auto" />
+        {!isJordanPersonal ? (
+          <HomeModeToggle className="w-full sm:w-auto" />
+        ) : null}
       </div>
 
       {statusView ? <ReturnStatusTimeline view={statusView} /> : null}
@@ -77,7 +92,7 @@ export default function ClientHomePage() {
 
       <SecondaryTaskList
         tasks={
-          homeMode === "settled"
+          effectiveHomeMode === "settled"
             ? clientTasks
             : secondary.filter((t) => t.status !== "done")
         }

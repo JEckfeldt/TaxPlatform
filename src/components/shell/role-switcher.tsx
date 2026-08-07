@@ -10,25 +10,27 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { switcherLabel } from "@/lib/personas";
 import type { PersonaId } from "@/lib/types";
 
 export function RoleSwitcher() {
-  const { persona, personas, selectPersona, clearPersona } = usePersona();
+  const { persona, switcherPersonas, selectPersona, clearPersona } =
+    usePersona();
+
+  const triggerLabel = persona
+    ? `${switcherLabel(persona)} · ${persona.name}`
+    : "Choose persona";
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger
-        className="inline-flex h-7 items-center gap-1.5 rounded-lg border border-border bg-background px-2.5 text-[0.8rem] font-medium outline-none hover:bg-muted"
-      >
-        <span className="max-w-[140px] truncate">
-          {persona?.name ?? "Choose persona"}
-        </span>
+      <DropdownMenuTrigger className="border-border bg-background hover:bg-muted inline-flex h-7 items-center gap-1.5 rounded-lg border px-2.5 text-[0.8rem] font-medium outline-none">
+        <span className="max-w-[160px] truncate">{triggerLabel}</span>
         <ChevronDown className="size-3.5 opacity-60" />
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-64">
         <DropdownMenuLabel>Demo personas</DropdownMenuLabel>
         <DropdownMenuSeparator />
-        {personas.map((p) => (
+        {switcherPersonas.map((p) => (
           <DropdownMenuItem
             key={p.id}
             onClick={() => selectPersona(p.id as PersonaId)}
@@ -36,7 +38,7 @@ export function RoleSwitcher() {
           >
             <div className="flex flex-col gap-0.5">
               <span className="font-medium">
-                {p.pickerLabel ?? p.title} · {p.name}
+                {switcherLabel(p)} · {p.name}
               </span>
               <span className="text-muted-foreground text-xs">
                 {p.description}

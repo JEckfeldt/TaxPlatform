@@ -25,7 +25,7 @@ Product UI name: **GreenGrowth**. Rough delivery roadmap for the case study prot
 | ID | Challenge | Depends on | Est. | Status |
 | --- | --- | --- | --- | --- |
 | **M0** | Foundation (scaffold) | — | ~4–6h | **Done** |
-| **M05** | Role-Aware Experiences | M0 | ~3–4h | Partial (picker + switcher) |
+| **M05** | Role-Aware Experiences | M0 | ~3–4h | Partial (dual-context done; Riley/extra lenses deferred) |
 | **M03** | Where to Start | M05 | ~4–5h | **Done** (picker trimmed to 2) |
 | **M06** | Return Status & Progress | M03 | ~3–4h | **Done** (client-only) |
 | **M02** | Client & CPA Collaboration | M03 | ~4–5h | **Done** (client; firm deferred) |
@@ -102,13 +102,15 @@ One product shell that adapts navigation, permissions copy, and landing routes b
 - Optional “You are viewing as…” permission banners
 
 ### Acceptance criteria
-- [ ] Switching personas changes nav and home destination
-- [ ] Jordan (preparer) vs Jordan (personal) demonstrates dual context
-- [ ] Riley (reviewer) shows reduced edit affordances vs Jordan
-- [ ] At least four of six role lenses are represented in picker or switcher
+- [x] Switching personas changes nav and home destination
+- [x] Jordan (preparer) vs Jordan (personal) demonstrates dual context
+- [ ] Riley (reviewer) shows reduced edit affordances vs Jordan — **deferred**
+- [ ] At least four of six role lenses are represented in picker or switcher — **deferred** (Alex + Jordan CPA + Jordan personal)
 
 ### Edge cases
 - Switching mid-return preserves deep link where possible or lands on role home with toast
+
+**Scope note:** Dual-context polish in [jordan-dual-context.md](./implementations/jordan-dual-context.md). Sam/Riley/admin/seasonal remain off picker/switcher.
 
 ---
 

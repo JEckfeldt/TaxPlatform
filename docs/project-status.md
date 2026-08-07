@@ -12,8 +12,8 @@ Living snapshot of what exists in the codebase. Update this file whenever featur
 
 | | |
 | --- | --- |
-| **Done recently** | M09 queue scale/search; M08+M01+M10 return review; M07 dashboard |
-| **Next up** | M05 polish; M11 ship (deploy + video) |
+| **Done recently** | Jordan dual-context (M05 polish); M09 queue; return review; dashboard |
+| **Next up** | M11 ship (deploy + video); optional Riley/extra role lenses |
 | **Blocked** | None |
 
 ---
@@ -23,7 +23,7 @@ Living snapshot of what exists in the codebase. Update this file whenever featur
 | ID | Challenge | Status | Notes |
 | --- | --- | --- | --- |
 | M0 | Foundation | Done | Next.js + shadcn + shells + seed |
-| M05 | Role-Aware Experiences | Partial | 2 picker personas (Alex, Jordan); others seeded but hidden |
+| M05 | Role-Aware Experiences | Partial | Dual-context done; Riley / ≥4 lenses deferred |
 | M03 | Where to Start | Done | W-2 hero, demo First-run/Settled toggle, fake upload loop |
 | M06 | Return Status & Progress | Done | Client timeline; firm strip still light |
 | M02 | Client & CPA Collaboration | Done | Client threads + replies + home requests; firm UI deferred |
@@ -40,7 +40,9 @@ Living snapshot of what exists in the codebase. Update this file whenever featur
 ## What’s shipped (clickable)
 
 - Persona picker — Client (Alex) + CPA (Jordan)
+- Role switcher — Alex, Jordan CPA, Jordan · Personal filing
 - Full client loop — home, status, requests, tasks, docs, messages/replies
+- Jordan personal return — settled client home + context banner + dependents task
 - CPA dashboard — ~150 returns, urgency rank, search, entity + segment filters, AI/Blocked chips
 - CPA return review (Alex) — field affordances, W-2 source trace, AI explain/correct
 - Other firm returns — callout linking to Alex demo path
@@ -65,8 +67,8 @@ Living snapshot of what exists in the codebase. Update this file whenever featur
 
 | Route | Purpose |
 | --- | --- |
-| `/` | Persona picker |
-| `/client/home` | Client what’s-next + status + requests |
+| `/` | Persona picker (Alex + Jordan CPA) |
+| `/client/home` | Client what’s-next + status + requests (Alex or Jordan personal) |
 | `/client/tasks/[id]` | Task flow |
 | `/client/documents/[id]` | Document stub |
 | `/client/messages` | Thread list |
@@ -90,6 +92,7 @@ Living snapshot of what exists in the codebase. Update this file whenever featur
 | [implementations/cpa-actionable-dashboard.md](./implementations/cpa-actionable-dashboard.md) | M07 (implemented) |
 | [implementations/cpa-return-review.md](./implementations/cpa-return-review.md) | M08+M01+M10 (implemented) |
 | [implementations/cpa-queue-scale-search.md](./implementations/cpa-queue-scale-search.md) | M09 (implemented) |
+| [implementations/jordan-dual-context.md](./implementations/jordan-dual-context.md) | M05 polish (implemented) |
 | [AI_Engineer_Case_Study_Updated.pdf](./AI_Engineer_Case_Study_Updated.pdf) | Case study |
 
 ---
@@ -98,6 +101,7 @@ Living snapshot of what exists in the codebase. Update this file whenever featur
 
 ### 2026-08-06
 
+- Implemented Jordan dual-context: switcher personal filing, settled home banner, dependents task
 - Implemented M09: ~150 firm returns, client-name search, entity chips, Showing X of Y
 - Wrote M09 plan: `docs/implementations/cpa-queue-scale-search.md`
 - Implemented M08+M01+M10: Alex return review workspace, fake W-2 trace, `simulateAI`, dashboard chips

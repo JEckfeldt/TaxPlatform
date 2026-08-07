@@ -4,18 +4,21 @@ import {
   ClientDemoProvider,
   useClientDemo,
 } from "@/components/client/client-demo-provider";
+import { usePersona } from "@/components/persona/persona-provider";
 import { AppHeader } from "@/components/shell/app-header";
 
 function ClientShellInner({ children }: { children: React.ReactNode }) {
   const { homeMode } = useClientDemo();
+  const { persona } = usePersona();
+  const settledChrome =
+    homeMode === "settled" || persona?.id === "jordan-personal";
 
-  const nav =
-    homeMode === "settled"
-      ? [
-          { href: "/client/home", label: "Home" },
-          { href: "/client/messages", label: "Messages" },
-        ]
-      : [];
+  const nav = settledChrome
+    ? [
+        { href: "/client/home", label: "Home" },
+        { href: "/client/messages", label: "Messages" },
+      ]
+    : [];
 
   return (
     <div className="flex min-h-full flex-1 flex-col">

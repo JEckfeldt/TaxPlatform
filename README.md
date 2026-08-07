@@ -36,14 +36,14 @@ Open [http://localhost:3000](http://localhost:3000), pick a demo persona, and ex
 
 ## Demo personas
 
-Picker currently shows **two** options (more roles stay in seed for later milestones):
+Landing picker shows **two** options (more roles stay in seed):
 
 | Persona | Path |
 | --- | --- |
 | Alex Rivera — Client | Client home (first-run / what’s next) |
 | Jordan Lee — CPA | Firm dashboard |
 
-On client home, use **Demo: home mode** to toggle First-run vs Settled (Messages nav). Task completions, return stage, and message replies are in-memory for the session and reset on refresh. Home-mode preference uses `localStorage` key `greengrowth_client_home_mode`.
+The in-app role switcher also includes **Jordan · Personal filing** (same person on their own 1040 in the client shell). On Alex’s client home, use **Demo: home mode** to toggle First-run vs Settled (Messages nav). Task completions, return stage, and message replies are in-memory for the session and reset on refresh. Home-mode preference uses `localStorage` key `greengrowth_client_home_mode`.
 
 ## Scripts
 
