@@ -31,9 +31,9 @@ Product UI name: **GreenGrowth**. Rough delivery roadmap for the case study prot
 | **M02** | Client & CPA Collaboration | M03 | ~4–5h | **Done** (client; firm deferred) |
 | **M04** | Getting Lost in the App | M02 | ~3–4h | **Done** (client loop) |
 | **M07** | An Actionable Dashboard | M05 | ~4–5h | **Done** |
-| **M08** | Clickable vs. Editable | M07 | ~3–4h | Not started |
-| **M01** | Source Document Traceability | M08 | ~5–6h | Stub |
-| **M10** | Trustworthy AI | M01, M08 | ~4–5h | Not started |
+| **M08** | Clickable vs. Editable | M07 | ~3–4h | **Done** (Alex review + dashboard chips) |
+| **M01** | Source Document Traceability | M08 | ~5–6h | **Done** (fake W-2 side panel) |
+| **M10** | Trustworthy AI | M01, M08 | ~4–5h | **Done** (`simulateAI` + accept/edit/reject) |
 | **M09** | Complexity Made Navigable | M07, M01 | ~4–5h | Stub |
 | **M11** | Ship (README, deploy, video) | All | ~3–4h | Not started |
 
@@ -240,10 +240,10 @@ Consistent visual language for clickable, editable, AI-generated, verified, need
 - Full design-system documentation site
 
 ### Acceptance criteria
-- [ ] Field state tokens/components for all six states
-- [ ] Demonstrated on return review + at least one other surface
-- [ ] Locked state explains why (tooltip/copy)
-- [ ] AI vs human-verified visually distinct
+- [x] Field state tokens/components for all six states
+- [x] Demonstrated on return review + at least one other surface
+- [x] Locked state explains why (tooltip/copy)
+- [x] AI vs human-verified visually distinct
 
 ---
 
@@ -260,10 +260,10 @@ Return review connects field → extracted value → source document → page/se
 - Real OCR / PDF parsing
 
 ### Acceptance criteria
-- [ ] Click a return field to open trace panel
-- [ ] Shows source doc, page/region highlight (fake), and transform note
-- [ ] Hardcoded handful of sample docs + links
-- [ ] Works for at least individual W-2 path; business doc optional bonus
+- [x] Click a return field to open trace panel
+- [x] Shows source doc, page/region highlight (fake), and transform note
+- [x] Hardcoded handful of sample docs + links
+- [x] Works for at least individual W-2 path; business doc optional bonus
 
 ---
 
@@ -281,10 +281,10 @@ AI interaction model: what / why / evidence / uncertainty / suggested action / c
 - Showing every technical score by default
 
 ### Acceptance criteria
-- [ ] `simulateAI()` (or equivalent) powers UI from stub JSON
-- [ ] Confidence + evidence shown at appropriate depth
-- [ ] User can accept / edit / reject a recommendation
-- [ ] Low-confidence and conflict edge cases seeded
+- [x] `simulateAI()` (or equivalent) powers UI from stub JSON
+- [x] Confidence + evidence shown at appropriate depth
+- [x] User can accept / edit / reject a recommendation
+- [x] Low-confidence and conflict edge cases seeded
 
 ---
 

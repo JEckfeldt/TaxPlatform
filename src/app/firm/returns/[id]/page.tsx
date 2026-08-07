@@ -1,7 +1,9 @@
 import Link from "next/link";
+import { ReviewWorkspace } from "@/components/firm/review-workspace";
 import { MilestoneStub } from "@/components/shell/milestone-stub";
 import { Badge } from "@/components/ui/badge";
 import { buttonVariants } from "@/components/ui/button";
+import { ALEX_RETURN_ID } from "@/lib/fixtures/return-fields";
 import { getFirmReturn, THREADS } from "@/lib/fixtures/seed";
 import { firmStatusLabel } from "@/lib/return-status";
 import { cn } from "@/lib/utils";
@@ -14,15 +16,13 @@ export default async function ReturnWorkspacePage({
   const { id } = await params;
   const taxReturn = getFirmReturn(id);
   const threads = THREADS.filter((t) => t.returnId === id);
+  const isAlexReview = id === ALEX_RETURN_ID;
 
   if (!taxReturn) {
     return (
       <div className="space-y-4">
         <p className="text-muted-foreground">Return not found.</p>
-        <Link
-          href="/firm/dashboard"
-          className={cn(buttonVariants())}
-        >
+        <Link href="/firm/dashboard" className={cn(buttonVariants())}>
           Back to dashboard
         </Link>
       </div>
@@ -67,28 +67,33 @@ export default async function ReturnWorkspacePage({
         </Link>
       </div>
 
-      <div className="grid gap-3 md:grid-cols-2">
-        <MilestoneStub
-          milestone="M01 · Traceability"
-          title="Return field ↔ source document"
-          summary="Build the side-by-side review and source page/section mapping here."
-        />
-        <MilestoneStub
-          milestone="M08 / M10"
-          title="Affordances + trustworthy AI"
-          summary="Field states and AI explain/correct panels attach to this workspace."
-        />
-        <MilestoneStub
-          milestone="M06 · Status"
-          title="Shared progress language"
-          summary="Firm status strip can reuse client stage helpers with more detail."
-        />
-        <MilestoneStub
-          milestone="M09 · Complexity"
-          title="Search, filter, hierarchy"
-          summary="Large fixture set and progressive disclosure land on this surface."
-        />
-      </div>
+      {isAlexReview ? (
+        <ReviewWorkspace />
+      ) : (
+        <div className="space-y-4">
+          <div className="border-border/80 bg-muted/40 rounded-xl border px-4 py-3 text-sm">
+            <p className="font-medium">Detailed review demo</p>
+            <p className="text-muted-foreground mt-1">
+              Field affordances, W-2 source trace, and AI correct flow are wired
+              on{" "}
+              <Link
+                href={`/firm/returns/${ALEX_RETURN_ID}`}
+                className="text-foreground underline underline-offset-2"
+              >
+                Alex Rivera&apos;s return
+              </Link>
+              .
+            </p>
+          </div>
+          <div className="grid gap-3 md:grid-cols-2">
+            <MilestoneStub
+              milestone="M09 · Complexity"
+              title="Search, filter, hierarchy"
+              summary="Scale and progressive disclosure can expand beyond the Alex demo path."
+            />
+          </div>
+        </div>
+      )}
 
       <div className="space-y-2">
         <h2 className="text-lg font-semibold">Threads on this return</h2>

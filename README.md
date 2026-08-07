@@ -32,7 +32,7 @@ Open [http://localhost:3000](http://localhost:3000), pick a demo persona, and ex
 | Seeded returns, tasks, documents, threads | OCR / document parsing |
 | Firm work queue ranking + segment filters | Tax calculation engine |
 | ~50 firm returns (3 named + generated) | Real practice management data |
-| — | LLM / extraction / confidence (stubs come in later milestones) |
+| CPA field review UI + fake W-2 highlight | Real OCR / LLM (`simulateAI` stub) |
 
 ## Demo personas
 

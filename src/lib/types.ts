@@ -84,6 +84,36 @@ export interface Document {
   pageCount: number;
 }
 
+export interface FieldSource {
+  documentId: string;
+  documentName: string;
+  page: number;
+  regionLabel: string;
+  /** CSS-ish fake highlight box on the preview (percentages). */
+  highlight: { top: number; left: number; width: number; height: number };
+  transformNote: string;
+}
+
+export interface FieldAI {
+  confidence: number;
+  summary: string;
+  rationale: string;
+  evidence: string[];
+  recommendation?: string;
+  warning?: string;
+}
+
+export interface ReturnField {
+  id: string;
+  returnId: string;
+  label: string;
+  value: string;
+  state: FieldState;
+  lockedReason?: string;
+  source?: FieldSource;
+  ai?: FieldAI;
+}
+
 export interface MessageThread {
   id: string;
   returnId: string;
