@@ -1,15 +1,9 @@
 "use client";
 
 import { usePersona } from "@/components/persona/persona-provider";
+import { PageTitle } from "@/components/shell/page-title";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
 import type { PersonaId } from "@/lib/types";
 
 export default function PersonaPickerPage() {
@@ -17,32 +11,34 @@ export default function PersonaPickerPage() {
 
   return (
     <main className="mx-auto flex w-full max-w-5xl flex-1 flex-col justify-center px-4 py-10 sm:px-6 sm:py-16">
-      <div className="mb-8 space-y-3 sm:mb-10">
-        <p className="text-primary text-sm font-semibold tracking-wide uppercase">
+      <div className="mb-10 space-y-3 sm:mb-12">
+        <p className="font-heading text-primary text-sm font-semibold tracking-[0.14em] uppercase">
           GreenGrowth
         </p>
-        <h1 className="text-4xl font-semibold tracking-tight sm:text-5xl">
-          Continue as…
-        </h1>
-        <p className="text-muted-foreground max-w-2xl text-base leading-relaxed sm:text-lg">
+        <PageTitle className="text-4xl sm:text-5xl">Continue as…</PageTitle>
+        <p className="text-muted-foreground max-w-xl text-base leading-relaxed sm:text-lg">
           Demo picker — no real login. Choose a client or CPA path.
         </p>
       </div>
 
-      <div className="grid w-full gap-3 sm:grid-cols-2">
+      <div className="grid w-full gap-4 sm:grid-cols-2">
         {personas.map((persona) => (
-          <Card
+          <div
             key={persona.id}
-            className="flex flex-col transition-shadow hover:shadow-md"
+            className="border-border bg-card flex flex-col rounded-xl border p-5 sm:p-6"
           >
-            <CardHeader className="space-y-2">
+            <div className="space-y-2">
               <Badge variant="secondary" className="w-fit">
                 {persona.pickerLabel ?? persona.title}
               </Badge>
-              <CardTitle className="text-xl">{persona.name}</CardTitle>
-              <CardDescription>{persona.description}</CardDescription>
-            </CardHeader>
-            <CardContent className="mt-auto">
+              <h2 className="font-heading text-xl font-semibold tracking-tight">
+                {persona.name}
+              </h2>
+              <p className="text-muted-foreground text-sm leading-relaxed">
+                {persona.description}
+              </p>
+            </div>
+            <div className="mt-6">
               <Button
                 onClick={() => selectPersona(persona.id as PersonaId)}
                 className="w-full"
@@ -50,8 +46,8 @@ export default function PersonaPickerPage() {
               >
                 Continue as {persona.pickerLabel ?? persona.name.split(" ")[0]}
               </Button>
-            </CardContent>
-          </Card>
+            </div>
+          </div>
         ))}
       </div>
     </main>

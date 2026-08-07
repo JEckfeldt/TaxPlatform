@@ -20,9 +20,11 @@ export function ReturnFieldRow({
       type="button"
       onClick={onSelect}
       className={cn(
-        "w-full rounded-xl border px-3 py-3 text-left transition-shadow",
+        "w-full px-3 py-3.5 text-left transition-colors first:rounded-t-xl last:rounded-b-xl",
         fieldStateClasses(field.state),
-        selected && "ring-primary/30 shadow-sm ring-2",
+        selected
+          ? "bg-primary/8 ring-primary/25 relative z-[1] ring-1 ring-inset"
+          : "hover:bg-muted/40",
       )}
     >
       <div className="flex flex-wrap items-start justify-between gap-2">

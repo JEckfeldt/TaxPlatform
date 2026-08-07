@@ -1,4 +1,5 @@
 import { WorkQueue } from "@/components/firm/work-queue";
+import { PageTitle } from "@/components/shell/page-title";
 import { getFirmReturns } from "@/lib/fixtures/seed";
 
 export default function FirmDashboardPage() {
@@ -7,10 +8,8 @@ export default function FirmDashboardPage() {
   return (
     <div className="space-y-6 sm:space-y-8">
       <div className="space-y-2">
-        <h1 className="text-3xl font-semibold tracking-tight">
-          What to work on now
-        </h1>
-        <p className="text-muted-foreground max-w-2xl">
+        <PageTitle>What to work on now</PageTitle>
+        <p className="text-muted-foreground max-w-2xl text-sm leading-relaxed sm:text-base">
           Preparer work queue for Jordan — ranked by urgency, filtered by what
           needs attention. {returns.length} returns in the demo catalog
           (simulated).

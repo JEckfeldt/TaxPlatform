@@ -1,11 +1,4 @@
 import { Badge } from "@/components/ui/badge";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
 
 export function MilestoneStub({
   milestone,
@@ -19,15 +12,13 @@ export function MilestoneStub({
   children?: React.ReactNode;
 }) {
   return (
-    <Card className="border-dashed">
-      <CardHeader>
-        <div className="flex flex-wrap items-center gap-2">
-          <Badge variant="secondary">{milestone}</Badge>
-          <CardTitle>{title}</CardTitle>
-        </div>
-        <CardDescription>{summary}</CardDescription>
-      </CardHeader>
-      {children ? <CardContent>{children}</CardContent> : null}
-    </Card>
+    <div className="border-border space-y-2 rounded-xl border border-dashed px-4 py-4">
+      <div className="flex flex-wrap items-center gap-2">
+        <Badge variant="secondary">{milestone}</Badge>
+        <p className="font-medium">{title}</p>
+      </div>
+      <p className="text-muted-foreground text-sm">{summary}</p>
+      {children}
+    </div>
   );
 }

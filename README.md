@@ -2,7 +2,7 @@
 
 Greenfield AI-powered client & CPA tax platform prototype for an AI Engineer case study. Frontend UX is the product; data and AI are simulated.
 
-Product name in the UI: **GreenGrowth**. Visual tone: soft off-white + forest/sage greens.
+Product name in the UI: **GreenGrowth**. Visual tone: sharper off-white + forest/sage; Sora for titles, Manrope for UI.
 
 ## Docs
 

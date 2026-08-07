@@ -11,9 +11,7 @@ export function ReviewWorkspace() {
   const [fields, setFields] = useState<ReturnField[]>(() =>
     getAlexReturnFields(),
   );
-  const [selectedId, setSelectedId] = useState<string | null>(
-    "field-wages",
-  );
+  const [selectedId, setSelectedId] = useState<string | null>("field-wages");
 
   const selected = useMemo(
     () => fields.find((f) => f.id === selectedId) ?? null,
@@ -27,9 +25,11 @@ export function ReviewWorkspace() {
   }
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-5">
       <div className="space-y-1">
-        <h2 className="text-lg font-semibold tracking-tight">Return review</h2>
+        <h2 className="font-heading text-xl font-semibold tracking-tight">
+          Return review
+        </h2>
         <p className="text-muted-foreground text-sm">
           Review extracted values, trace them to the W-2, and correct AI output
           without leaving this workspace.
@@ -39,7 +39,7 @@ export function ReviewWorkspace() {
       <FieldStateLegend />
 
       <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_minmax(0,22rem)] xl:grid-cols-[minmax(0,1fr)_minmax(0,26rem)]">
-        <div className="space-y-2">
+        <div className="border-border divide-border divide-y rounded-xl border">
           {fields.map((field) => (
             <ReturnFieldRow
               key={field.id}

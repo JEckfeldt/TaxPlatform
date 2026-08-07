@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ReviewWorkspace } from "@/components/firm/review-workspace";
 import { MilestoneStub } from "@/components/shell/milestone-stub";
+import { PageTitle } from "@/components/shell/page-title";
 import { Badge } from "@/components/ui/badge";
 import { buttonVariants } from "@/components/ui/button";
 import { ALEX_RETURN_ID } from "@/lib/fixtures/return-fields";
@@ -41,9 +42,9 @@ export default async function ReturnWorkspacePage({
 
       <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
         <div className="space-y-2">
-          <h1 className="text-3xl font-semibold tracking-tight">
+          <PageTitle>
             {taxReturn.clientName} · {taxReturn.taxYear}
-          </h1>
+          </PageTitle>
           <div className="flex flex-wrap items-center gap-2">
             <Badge>{firmStatusLabel(taxReturn.status)}</Badge>
             <Badge variant="secondary" className="capitalize">
@@ -71,7 +72,7 @@ export default async function ReturnWorkspacePage({
         <ReviewWorkspace />
       ) : (
         <div className="space-y-4">
-          <div className="border-border/80 bg-muted/40 rounded-xl border px-4 py-3 text-sm">
+          <div className="border-border border-l-primary border-l-2 py-1 pl-4 text-sm">
             <p className="font-medium">Detailed review demo</p>
             <p className="text-muted-foreground mt-1">
               Field affordances, W-2 source trace, and AI correct flow are wired
@@ -95,8 +96,10 @@ export default async function ReturnWorkspacePage({
         </div>
       )}
 
-      <div className="space-y-2">
-        <h2 className="text-lg font-semibold">Threads on this return</h2>
+      <div className="border-border space-y-2 border-t pt-6">
+        <h2 className="text-sm font-semibold tracking-tight">
+          Threads on this return
+        </h2>
         <ul className="text-muted-foreground list-inside list-disc text-sm">
           {threads.map((t) => (
             <li key={t.id}>

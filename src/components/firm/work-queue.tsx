@@ -4,12 +4,6 @@ import Link from "next/link";
 import { useMemo, useState } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import {
   ENTITY_FILTERS,
@@ -55,10 +49,7 @@ export function WorkQueue({ returns }: { returns: TaxReturn[] }) {
     [returns, query, entity],
   );
 
-  const counts = useMemo(
-    () => segmentCounts(scoped, "jordan"),
-    [scoped],
-  );
+  const counts = useMemo(() => segmentCounts(scoped, "jordan"), [scoped]);
 
   const ranked = useMemo(() => {
     const filtered = filterBySegment(scoped, segment, "jordan");
@@ -68,7 +59,7 @@ export function WorkQueue({ returns }: { returns: TaxReturn[] }) {
   const queryActive = query.trim().length > 0;
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-5">
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
         <Input
           value={query}
@@ -127,51 +118,55 @@ export function WorkQueue({ returns }: { returns: TaxReturn[] }) {
           No returns match your search/filters.
         </p>
       ) : (
-        <div className="grid gap-3">
+        <div className="border-border divide-border divide-y rounded-xl border">
           {ranked.map((item) => {
             const chips = rowChips(item);
             return (
-              <Link key={item.id} href={`/firm/returns/${item.id}`}>
-                <Card className="transition-shadow hover:shadow-md">
-                  <CardHeader className="gap-3 space-y-0 sm:flex-row sm:items-start sm:justify-between">
-                    <div className="min-w-0 space-y-1.5">
-                      <div className="flex flex-wrap items-center gap-2">
-                        <CardTitle className="text-lg">
-                          {item.clientName} · {item.taxYear}
-                        </CardTitle>
-                        <Badge variant="secondary" className="capitalize">
-                          {item.entityType}
-                        </Badge>
-                        {chips.map((chip) => (
-                          <span
-                            key={chip.label}
-                            className={cn(
-                              "rounded-md px-2 py-0.5 text-xs font-medium",
-                              chip.className,
-                            )}
-                          >
-                            {chip.label}
-                          </span>
-                        ))}
-                      </div>
-                      <CardDescription>{item.nextAction}</CardDescription>
-                      {item.blockers[0] ? (
-                        <p className="text-destructive text-xs">
-                          Blocked: {item.blockers[0]}
-                        </p>
-                      ) : null}
-                    </div>
-                    <div className="flex shrink-0 flex-row flex-wrap items-center gap-2 sm:flex-col sm:items-end">
-                      <Badge>Urgency {computeUrgency(item)}</Badge>
-                      <span className="text-muted-foreground text-xs">
-                        Next: {ownerLabel(item.nextActionOwner)}
+              <Link
+                key={item.id}
+                href={`/firm/returns/${item.id}`}
+                className="hover:bg-muted/40 block px-4 py-3.5 transition-colors sm:px-5"
+              >
+                <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between sm:gap-4">
+                  <div className="min-w-0 space-y-1">
+                    <div className="flex flex-wrap items-center gap-2">
+                      <span className="font-medium">
+                        {item.clientName} · {item.taxYear}
                       </span>
-                      <span className="text-muted-foreground text-xs capitalize">
-                        {item.status.replaceAll("_", " ")}
-                      </span>
+                      <Badge variant="secondary" className="capitalize">
+                        {item.entityType}
+                      </Badge>
+                      {chips.map((chip) => (
+                        <span
+                          key={chip.label}
+                          className={cn(
+                            "rounded-md px-2 py-0.5 text-xs font-medium",
+                            chip.className,
+                          )}
+                        >
+                          {chip.label}
+                        </span>
+                      ))}
                     </div>
-                  </CardHeader>
-                </Card>
+                    <p className="text-muted-foreground text-sm">
+                      {item.nextAction}
+                    </p>
+                    {item.blockers[0] ? (
+                      <p className="text-destructive text-xs">
+                        Blocked: {item.blockers[0]}
+                      </p>
+                    ) : null}
+                  </div>
+                  <div className="flex shrink-0 flex-row flex-wrap items-center gap-2 sm:flex-col sm:items-end">
+                    <Badge>Urgency {computeUrgency(item)}</Badge>
+                    <span className="text-muted-foreground text-xs">
+                      Next: {ownerLabel(item.nextActionOwner)}
+                    </span>
+                    <span className="text-muted-foreground text-xs capitalize">
+                      {item.status.replaceAll("_", " ")}
+                    </span>
+                  </div>
+                </div>
               </Link>
             );
           })}

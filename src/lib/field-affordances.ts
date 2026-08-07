@@ -28,23 +28,23 @@ export function fieldStateLabel(state: FieldState): string {
   }
 }
 
-/** Row / chip classes for each affordance state. */
+/** Row background tint for each affordance state (used in divided lists). */
 export function fieldStateClasses(state: FieldState): string {
   switch (state) {
     case "ai_generated":
-      return "border-teal-700/30 bg-teal-700/5";
+      return "bg-teal-700/5";
     case "verified":
-      return "border-emerald-700/35 bg-emerald-700/5";
+      return "bg-emerald-700/5";
     case "needs_approval":
-      return "border-amber-700/40 bg-amber-700/5";
+      return "bg-amber-700/5";
     case "editable":
-      return "border-primary/35 bg-card";
+      return "bg-transparent";
     case "locked":
-      return "border-border bg-muted/50";
+      return "bg-muted/40";
     case "clickable":
-      return "border-sky-800/25 bg-sky-800/5";
+      return "bg-sky-800/5";
     default:
-      return "border-border bg-card";
+      return "bg-transparent";
   }
 }
 

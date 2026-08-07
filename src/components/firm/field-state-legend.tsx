@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils";
 
 export function FieldStateLegend() {
   return (
-    <div className="border-border/80 bg-card/60 space-y-2 rounded-xl border px-3 py-3">
+    <div className="space-y-2">
       <p className="text-muted-foreground text-xs font-medium tracking-wide uppercase">
         Field states
       </p>

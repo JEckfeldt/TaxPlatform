@@ -1,6 +1,6 @@
 # GreenGrowth — Project Status
 
-**Last updated:** 2026-08-06  
+**Last updated:** 2026-08-07  
 **Product name:** GreenGrowth  
 **Repo folder:** TaxPlatform  
 
@@ -12,7 +12,7 @@ Living snapshot of what exists in the codebase. Update this file whenever featur
 
 | | |
 | --- | --- |
-| **Done recently** | Jordan dual-context (M05 polish); M09 queue; return review; dashboard |
+| **Done recently** | UI refresh (theme + de-card); Jordan dual-context; M09–M10 firm path |
 | **Next up** | M11 ship (deploy + video); optional Riley/extra role lenses |
 | **Blocked** | None |
 
@@ -43,10 +43,10 @@ Living snapshot of what exists in the codebase. Update this file whenever featur
 - Role switcher — Alex, Jordan CPA, Jordan · Personal filing
 - Full client loop — home, status, requests, tasks, docs, messages/replies
 - Jordan personal return — settled client home + context banner + dependents task
-- CPA dashboard — ~150 returns, urgency rank, search, entity + segment filters, AI/Blocked chips
+- CPA dashboard — ~150 returns, dense list rows, search, entity + segment filters
 - CPA return review (Alex) — field affordances, W-2 source trace, AI explain/correct
 - Other firm returns — callout linking to Alex demo path
-- Brand/theme — GreenGrowth; soft off-white + forest/sage
+- Brand/theme — GreenGrowth; sharper forest/sage; Sora titles + Manrope UI; de-carded surfaces
 
 ---
 
@@ -93,11 +93,16 @@ Living snapshot of what exists in the codebase. Update this file whenever featur
 | [implementations/cpa-return-review.md](./implementations/cpa-return-review.md) | M08+M01+M10 (implemented) |
 | [implementations/cpa-queue-scale-search.md](./implementations/cpa-queue-scale-search.md) | M09 (implemented) |
 | [implementations/jordan-dual-context.md](./implementations/jordan-dual-context.md) | M05 polish (implemented) |
+| [implementations/ui-refresh-greengrowth.md](./implementations/ui-refresh-greengrowth.md) | UI theme/structure refresh (implemented) |
 | [AI_Engineer_Case_Study_Updated.pdf](./AI_Engineer_Case_Study_Updated.pdf) | Case study |
 
 ---
 
 ## Changelog (newest first)
+
+### 2026-08-07
+
+- UI refresh: sharper GreenGrowth tokens, Sora display titles, de-carded firm queue and client sections
 
 ### 2026-08-06
 

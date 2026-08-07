@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 
 export function ReturnStatusTimeline({ view }: { view: StatusView }) {
   return (
-    <section className="border-border/80 bg-card/80 space-y-4 rounded-xl border p-4 sm:p-5">
+    <section className="space-y-4">
       <div className="flex flex-wrap items-center justify-between gap-2">
         <h2 className="text-sm font-semibold tracking-tight">Return status</h2>
         <Badge variant="secondary">{view.ownerLabel}</Badge>
@@ -24,10 +24,11 @@ export function ReturnStatusTimeline({ view }: { view: StatusView }) {
               key={stage.id}
               className={cn(
                 "rounded-lg border px-3 py-2.5 text-sm",
-                state === "done" && "border-primary/25 bg-accent/50",
+                state === "done" && "border-primary/25 bg-accent/40",
                 state === "current" &&
-                  "border-primary bg-primary/5 ring-primary/20 ring-1",
-                state === "upcoming" && "border-border/70 bg-muted/30 opacity-70",
+                  "border-primary bg-primary/5 ring-primary/25 ring-1",
+                state === "upcoming" &&
+                  "border-border/80 bg-transparent opacity-65",
               )}
             >
               <p className="text-muted-foreground text-[0.65rem] font-medium tracking-wide uppercase">
