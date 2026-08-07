@@ -1,48 +1,80 @@
+"use client";
+
 import Link from "next/link";
-import { MilestoneStub } from "@/components/shell/milestone-stub";
+import { use } from "react";
+import { ClientBreadcrumbs } from "@/components/client/client-breadcrumbs";
+import { useClientDemo } from "@/components/client/client-demo-provider";
+import { RelatedObjects } from "@/components/client/related-objects";
 import { buttonVariants } from "@/components/ui/button";
-import { DOCUMENTS, THREADS } from "@/lib/fixtures/seed";
+import {
+  documentById,
+  threadForDocument,
+} from "@/lib/client-navigation";
+import { TASKS } from "@/lib/fixtures/seed";
 import { cn } from "@/lib/utils";
 
-export default async function DocumentPage({
+export default function DocumentPage({
   params,
 }: {
   params: Promise<{ id: string }>;
 }) {
-  const { id } = await params;
-  const doc = DOCUMENTS.find((d) => d.id === id);
-  const thread = THREADS.find((t) => t.documentId === id);
+  const { id } = use(params);
+  const { threads } = useClientDemo();
+  const doc = documentById(id);
+  const thread = threadForDocument(threads, id);
+  const relatedTask = TASKS.find((t) => t.documentId === id);
+
+  if (!doc) {
+    return (
+      <div className="space-y-4">
+        <p className="text-muted-foreground">Document not found.</p>
+        <Link href="/client/home" className={cn(buttonVariants())}>
+          Back to home
+        </Link>
+      </div>
+    );
+  }
 
   return (
     <div className="space-y-6">
-      <div className="text-muted-foreground flex flex-wrap items-center gap-2 text-sm">
-        <Link href="/client/home" className="hover:text-foreground">
-          Home
+      <ClientBreadcrumbs
+        items={[
+          { label: "Home", href: "/client/home" },
+          { label: doc.name },
+        ]}
+      />
+
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+        <div className="space-y-2">
+          <h1 className="text-3xl font-semibold tracking-tight">{doc.name}</h1>
+          <p className="text-muted-foreground">
+            {doc.type} · {doc.pageCount} page(s)
+          </p>
+        </div>
+        <Link
+          href="/client/home"
+          className={cn(buttonVariants({ variant: "outline", size: "sm" }))}
+        >
+          Back to home
         </Link>
-        <span>/</span>
-        <span className="text-foreground">{doc?.name ?? "Document"}</span>
       </div>
 
-      <h1 className="text-3xl font-semibold tracking-tight">
-        {doc?.name ?? "Document"}
-      </h1>
-      <p className="text-muted-foreground">
-        {doc?.type} · {doc?.pageCount ?? 0} page(s) · placeholder preview
-      </p>
+      <div className="border-border/80 bg-muted/30 flex min-h-48 items-center justify-center rounded-xl border border-dashed px-6 py-12 text-center">
+        <div className="space-y-1">
+          <p className="text-sm font-medium">Document preview (simulated)</p>
+          <p className="text-muted-foreground text-xs">
+            No real file — placeholder for the demo walkthrough.
+          </p>
+        </div>
+      </div>
 
-      {thread ? (
-        <Link
-          href="/client/messages"
-          className={cn(buttonVariants({ variant: "outline" }))}
-        >
-          View related messages
-        </Link>
-      ) : null}
-
-      <MilestoneStub
-        milestone="M01 / M04"
-        title="Document as a connected object"
-        summary="Source regions and deep links land here in later milestones. Preview is intentionally fake."
+      <RelatedObjects
+        taskHref={
+          relatedTask ? `/client/tasks/${relatedTask.id}` : undefined
+        }
+        taskLabel={relatedTask?.title}
+        threadHref={thread ? `/client/messages/${thread.id}` : undefined}
+        threadLabel={thread?.subject}
       />
     </div>
   );

@@ -3,7 +3,9 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { use, useState } from "react";
+import { ClientBreadcrumbs } from "@/components/client/client-breadcrumbs";
 import { useClientDemo } from "@/components/client/client-demo-provider";
+import { RelatedObjects } from "@/components/client/related-objects";
 import { Button, buttonVariants } from "@/components/ui/button";
 import {
   Card,
@@ -12,6 +14,8 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { threadForTask } from "@/lib/client-navigation";
+import { DOCUMENTS } from "@/lib/fixtures/seed";
 import { cn } from "@/lib/utils";
 
 export default function TaskPage({
@@ -21,16 +25,20 @@ export default function TaskPage({
 }) {
   const { id } = use(params);
   const router = useRouter();
-  const { getTask, completeTask } = useClientDemo();
+  const { getTask, completeTask, threads } = useClientDemo();
   const task = getTask(id);
   const [simulated, setSimulated] = useState(false);
+  const thread = task ? threadForTask(threads, task.id) : undefined;
+  const doc = task?.documentId
+    ? DOCUMENTS.find((d) => d.id === task.documentId)
+    : undefined;
 
   if (!task) {
     return (
       <div className="space-y-4">
         <p className="text-muted-foreground">Task not found.</p>
         <Link href="/client/home" className={cn(buttonVariants())}>
-          Back home
+          Back to home
         </Link>
       </div>
     );
@@ -47,18 +55,34 @@ export default function TaskPage({
 
   return (
     <div className="space-y-6">
-      <div className="text-muted-foreground flex flex-wrap items-center gap-2 text-sm">
-        <Link href="/client/home" className="hover:text-foreground">
-          Home
+      <ClientBreadcrumbs
+        items={[
+          { label: "Home", href: "/client/home" },
+          { label: task.title },
+        ]}
+      />
+
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+        <div className="space-y-2">
+          <h1 className="text-3xl font-semibold tracking-tight">{task.title}</h1>
+          <p className="text-muted-foreground max-w-2xl">{task.description}</p>
+        </div>
+        <Link
+          href="/client/home"
+          className={cn(buttonVariants({ variant: "outline", size: "sm" }))}
+        >
+          Back to home
         </Link>
-        <span>/</span>
-        <span className="text-foreground">{task.title}</span>
       </div>
 
-      <div className="space-y-2">
-        <h1 className="text-3xl font-semibold tracking-tight">{task.title}</h1>
-        <p className="text-muted-foreground max-w-2xl">{task.description}</p>
-      </div>
+      <RelatedObjects
+        documentHref={
+          task.documentId ? `/client/documents/${task.documentId}` : undefined
+        }
+        documentLabel={doc?.name}
+        threadHref={thread ? `/client/messages/${thread.id}` : undefined}
+        threadLabel={thread?.subject}
+      />
 
       {done ? (
         <Card>
@@ -103,19 +127,14 @@ export default function TaskPage({
                 PDF or photo · fake only
               </span>
             </button>
-            <div className="flex flex-wrap gap-2">
-              <Button disabled={!simulated} onClick={finish} size="lg">
-                I&apos;ve uploaded this
-              </Button>
-              {task.documentId ? (
-                <Link
-                  href={`/client/documents/${task.documentId}`}
-                  className={cn(buttonVariants({ variant: "outline" }))}
-                >
-                  View document stub
-                </Link>
-              ) : null}
-            </div>
+            <Button
+              disabled={!simulated}
+              onClick={finish}
+              size="lg"
+              className="w-full sm:w-auto"
+            >
+              I&apos;ve uploaded this
+            </Button>
           </CardContent>
         </Card>
       ) : null}
@@ -134,7 +153,7 @@ export default function TaskPage({
               <li>Any dependents?</li>
               <li>Did you move states in 2025?</li>
             </ul>
-            <Button onClick={finish} size="lg">
+            <Button onClick={finish} size="lg" className="w-full sm:w-auto">
               Mark answered
             </Button>
           </CardContent>

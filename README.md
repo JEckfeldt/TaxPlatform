@@ -6,6 +6,7 @@ Product name in the UI: **GreenGrowth**. Visual tone: soft off-white + forest/sa
 
 ## Docs
 
+- [Project status](./docs/project-status.md) — living snapshot (kept current as features change)
 - [Project overview](./docs/project%20overview.md) — locked decisions, product spine, video script
 - [Roadmap](./docs/roadmap.md) — challenge milestones (M0–M11)
 - [Case study PDF](./docs/AI_Engineer_Case_Study_Updated.pdf)
@@ -41,7 +42,7 @@ Picker currently shows **two** options (more roles stay in seed for later milest
 | Alex Rivera — Client | Client home (first-run / what’s next) |
 | Jordan Lee — CPA | Firm dashboard |
 
-On client home, use **Demo: home mode** to toggle First-run vs Settled (Messages nav). Task completions are in-memory for the session and reset on refresh. Home-mode preference uses `localStorage` key `greengrowth_client_home_mode`.
+On client home, use **Demo: home mode** to toggle First-run vs Settled (Messages nav). Task completions, return stage, and message replies are in-memory for the session and reset on refresh. Home-mode preference uses `localStorage` key `greengrowth_client_home_mode`.
 
 ## Scripts
 

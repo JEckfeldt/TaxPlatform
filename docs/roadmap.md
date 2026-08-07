@@ -27,9 +27,9 @@ Product UI name: **GreenGrowth**. Rough delivery roadmap for the case study prot
 | **M0** | Foundation (scaffold) | — | ~4–6h | **Done** |
 | **M05** | Role-Aware Experiences | M0 | ~3–4h | Partial (picker + switcher) |
 | **M03** | Where to Start | M05 | ~4–5h | **Done** (picker trimmed to 2) |
-| **M06** | Return Status & Progress | M03 | ~3–4h | Stub |
-| **M02** | Client & CPA Collaboration | M03 | ~4–5h | Stub |
-| **M04** | Getting Lost in the App | M02 | ~3–4h | Stub |
+| **M06** | Return Status & Progress | M03 | ~3–4h | **Done** (client-only) |
+| **M02** | Client & CPA Collaboration | M03 | ~4–5h | **Done** (client; firm deferred) |
+| **M04** | Getting Lost in the App | M02 | ~3–4h | **Done** (client loop) |
 | **M07** | An Actionable Dashboard | M05 | ~4–5h | Stub |
 | **M08** | Clickable vs. Editable | M07 | ~3–4h | Not started |
 | **M01** | Source Document Traceability | M08 | ~5–6h | Stub |
@@ -143,6 +143,8 @@ Cold client (Alex) understands the single next action within ~10 seconds; chrome
 ### Feature summary
 Shared status language so client and firm interpret the same stage the same way, with appropriate detail by audience.
 
+**Scope note (2026-08-06):** Shipped **client home only** for Alex’s return. Firm UI deferred. Multi-return samples deferred. Spec: [return-status-progress.md](./implementations/return-status-progress.md).
+
 ### Goals
 - Status model + labels used on both shells
 - Show done / next / owner / blockers
@@ -152,10 +154,10 @@ Shared status language so client and firm interpret the same stage the same way,
 - Workflow engine / state machine backend
 
 ### Acceptance criteria
-- [ ] Status strip/timeline on client home and firm return workspace
-- [ ] Same underlying status enum; different detail levels
-- [ ] Blockers visible when present
-- [ ] At least 4 sample returns at different stages
+- [x] Status strip/timeline on client home (firm workspace deferred)
+- [x] Same underlying status helpers in `src/lib` (firm labels ready, UI later)
+- [x] Blockers visible when present
+- [x] Stages demonstrated via task-driven advance on Alex’s return (4 concurrent samples deferred)
 
 ---
 
@@ -172,11 +174,13 @@ Contextual threads on documents/issues; internal vs client-visible; outstanding 
 - Real-time messaging backend
 - Email/SMS integration
 
+**Scope note:** Client path shipped with [client-collab-navigation.md](./implementations/client-collab-navigation.md). Firm internal vs client-visible UI deferred.
+
 ### Acceptance criteria
-- [ ] Thread UI linked from document/task/return
-- [ ] Internal vs client visibility toggle or filter (firm)
-- [ ] Outstanding request list with owner
-- [ ] Seeded CPA + client conversation clickable end-to-end
+- [x] Thread UI linked from document/task/return (client)
+- [ ] Internal vs client visibility toggle or filter (firm) — deferred
+- [x] Outstanding request list with owner (client home)
+- [x] Seeded CPA + client conversation clickable end-to-end (client reply)
 
 ---
 
@@ -194,10 +198,10 @@ Move across messages, documents, questionnaires, and tasks without losing place.
 - Full browser-history time travel product
 
 ### Acceptance criteria
-- [ ] Object graph links: task ↔ document ↔ thread ↔ return
-- [ ] Breadcrumbs or equivalent on deep pages
-- [ ] “Back to workflow” / resume control when leaving a path
-- [ ] Hardcoded relationships drive the demo
+- [x] Object graph links: task ↔ document ↔ thread
+- [x] Breadcrumbs or equivalent on deep pages
+- [x] “Back to home” on deep client pages
+- [x] Hardcoded relationships drive the demo
 
 ---
 

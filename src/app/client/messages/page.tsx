@@ -1,4 +1,9 @@
-import { MilestoneStub } from "@/components/shell/milestone-stub";
+"use client";
+
+import Link from "next/link";
+import { ClientBreadcrumbs } from "@/components/client/client-breadcrumbs";
+import { useClientDemo } from "@/components/client/client-demo-provider";
+import { usePersona } from "@/components/persona/persona-provider";
 import { Badge } from "@/components/ui/badge";
 import {
   Card,
@@ -6,43 +11,74 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { THREADS } from "@/lib/fixtures/seed";
+import { buttonVariants } from "@/components/ui/button";
+import { clientThreadsForReturn } from "@/lib/client-navigation";
+import { returnForPersona } from "@/lib/fixtures/seed";
+import { getPersona } from "@/lib/personas";
+import { cn } from "@/lib/utils";
 
 export default function ClientMessagesPage() {
-  const clientThreads = THREADS.filter((t) => t.visibility === "client");
+  const { persona } = usePersona();
+  const { threads } = useClientDemo();
+  const taxReturn = returnForPersona(persona?.id ?? "alex");
+  const clientThreads = clientThreadsForReturn(threads, taxReturn?.id);
 
   return (
-    <div className="space-y-8">
-      <div className="space-y-2">
-        <h1 className="text-3xl font-semibold tracking-tight">Messages</h1>
-        <p className="text-muted-foreground">
-          Threads stay attached to documents and tasks — not a generic inbox.
-        </p>
-      </div>
-
-      <div className="grid gap-3">
-        {clientThreads.map((thread) => (
-          <Card key={thread.id}>
-            <CardHeader className="space-y-2">
-              <div className="flex flex-wrap items-center gap-2">
-                <CardTitle className="text-base">{thread.subject}</CardTitle>
-                <Badge variant="secondary">
-                  Next: {thread.nextActionOwner}
-                </Badge>
-              </div>
-              <CardDescription>
-                {thread.messages[thread.messages.length - 1]?.body}
-              </CardDescription>
-            </CardHeader>
-          </Card>
-        ))}
-      </div>
-
-      <MilestoneStub
-        milestone="M02 · Collaboration"
-        title="Contextual communication scaffold"
-        summary="Add internal vs client visibility, request tracking, and ownership polish in milestone 02."
+    <div className="space-y-6">
+      <ClientBreadcrumbs
+        items={[
+          { label: "Home", href: "/client/home" },
+          { label: "Messages" },
+        ]}
       />
+
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+        <div className="space-y-2">
+          <h1 className="text-3xl font-semibold tracking-tight">Messages</h1>
+          <p className="text-muted-foreground max-w-2xl">
+            Conversations stay attached to your documents and tasks — not a
+            generic inbox.
+          </p>
+        </div>
+        <Link
+          href="/client/home"
+          className={cn(buttonVariants({ variant: "outline", size: "sm" }))}
+        >
+          Back to home
+        </Link>
+      </div>
+
+      {clientThreads.length === 0 ? (
+        <p className="text-muted-foreground text-sm">No messages yet.</p>
+      ) : (
+        <div className="grid gap-3">
+          {clientThreads.map((thread) => {
+            const last = thread.messages[thread.messages.length - 1];
+            const author = last ? getPersona(last.authorId) : undefined;
+            return (
+              <Link key={thread.id} href={`/client/messages/${thread.id}`}>
+                <Card className="transition-shadow hover:shadow-md">
+                  <CardHeader className="space-y-2">
+                    <div className="flex flex-wrap items-center gap-2">
+                      <CardTitle className="text-base">{thread.subject}</CardTitle>
+                      <Badge variant="secondary">
+                        Next:{" "}
+                        {thread.nextActionOwner === "client"
+                          ? "you"
+                          : thread.nextActionOwner}
+                      </Badge>
+                    </div>
+                    <CardDescription className="line-clamp-2">
+                      {author ? `${author.name.split(" ")[0]}: ` : null}
+                      {last?.body}
+                    </CardDescription>
+                  </CardHeader>
+                </Card>
+              </Link>
+            );
+          })}
+        </div>
+      )}
     </div>
   );
 }

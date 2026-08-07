@@ -1,0 +1,22 @@
+---
+description: Keep docs/project-status.md updated when code or features change
+alwaysApply: true
+---
+
+# Project status updates
+
+Whenever you **add, remove, or materially change** application features, routes, personas, milestones, simulated vs real behavior, or shipping readiness in this repo:
+
+1. Update [`docs/project-status.md`](docs/project-status.md) in the **same turn** as the code change (do not leave it stale).
+2. Set **Last updated** to today’s date.
+3. Adjust these sections as needed:
+   - **Current focus** (done recently / next up / blocked)
+   - **Milestone status** (status + short notes)
+   - **What’s shipped** / **What’s fake**
+   - **Key routes** (if routes changed)
+   - **Specs & docs** (if new implementation specs were added)
+   - **Changelog** — add a short newest-first bullet under today’s date
+4. Keep the file a **living snapshot** (concise). Do not dump full diffs or long implementation notes; those belong in `docs/implementations/` or `docs/roadmap.md`.
+5. If you only change docs/comments with no product behavior change, you may skip updating project-status unless the docs list or milestone status itself changed.
+
+Do not create a second status file. `docs/project-status.md` is the source of truth for “where the project is now.”
