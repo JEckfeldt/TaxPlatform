@@ -12,7 +12,7 @@ Living snapshot of what exists in the codebase. Update this file whenever featur
 
 | | |
 | --- | --- |
-| **Done recently** | Docs/README pass; shared shell breadcrumbs/nav; live Vercel URL |
+| **Done recently** | README: plain-language real-vs-fake + key decisions; live Vercel URL |
 | **Next up** | M11 demo video |
 | **Blocked** | None |
 
