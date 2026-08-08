@@ -3,40 +3,58 @@ import { cn } from "@/lib/utils";
 
 export function ReturnStatusTimeline({ view }: { view: StatusView }) {
   return (
-    <section className="space-y-4">
-      <h2 className="text-sm font-semibold tracking-tight">Return status</h2>
+    <ol className="flex flex-wrap items-center gap-x-1 gap-y-2 sm:gap-x-0">
+      {view.stages.map((stage, index) => {
+        const state =
+          index < view.stageIndex
+            ? "done"
+            : index === view.stageIndex
+              ? "current"
+              : "upcoming";
+        const isLast = index === view.stages.length - 1;
 
-      <ol className="grid grid-cols-2 gap-2 sm:grid-cols-4 sm:gap-3">
-        {view.stages.map((stage, index) => {
-          const state =
-            index < view.stageIndex
-              ? "done"
-              : index === view.stageIndex
-                ? "current"
-                : "upcoming";
-
-          return (
-            <li
-              key={stage.id}
+        return (
+          <li key={stage.id} className="flex items-center">
+            <div
               className={cn(
-                "rounded-lg border px-3 py-2.5 text-sm",
-                state === "done" && "border-primary/25 bg-accent/40",
-                state === "current" &&
-                  "border-primary bg-primary/5 ring-primary/25 ring-1",
-                state === "upcoming" &&
-                  "border-border/80 bg-transparent opacity-65",
+                "flex items-center gap-2 rounded-md px-2 py-1.5 text-sm",
+                state === "current" && "bg-primary/8 text-foreground",
+                state === "done" && "text-foreground",
+                state === "upcoming" && "text-muted-foreground",
               )}
             >
-              <p className="text-muted-foreground text-[0.65rem] font-medium tracking-wide uppercase">
-                Step {index + 1}
-                {state === "done" ? " · Done" : null}
-                {state === "current" ? " · Now" : null}
-              </p>
-              <p className="font-medium">{stage.label}</p>
-            </li>
-          );
-        })}
-      </ol>
-    </section>
+              <span
+                className={cn(
+                  "flex size-6 shrink-0 items-center justify-center rounded-full text-xs font-semibold",
+                  state === "current" &&
+                    "bg-primary text-primary-foreground",
+                  state === "done" && "bg-primary/15 text-primary",
+                  state === "upcoming" && "bg-muted text-muted-foreground",
+                )}
+              >
+                {state === "done" ? "✓" : index + 1}
+              </span>
+              <span
+                className={cn(
+                  "font-medium",
+                  state === "current" && "text-foreground",
+                )}
+              >
+                {stage.shortLabel ?? stage.label}
+              </span>
+            </div>
+            {!isLast ? (
+              <span
+                aria-hidden
+                className={cn(
+                  "mx-1 hidden h-px w-4 sm:mx-2 sm:block sm:w-8",
+                  index < view.stageIndex ? "bg-primary/40" : "bg-border",
+                )}
+              />
+            ) : null}
+          </li>
+        );
+      })}
+    </ol>
   );
 }

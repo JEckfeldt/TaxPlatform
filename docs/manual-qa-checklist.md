@@ -17,11 +17,7 @@ Manual verification guide for the clickable prototype. Derived from [AI_Engineer
 
 ---
 
-
-
 ## Must pass now
-
-
 
 ### Global / shell
 
@@ -35,33 +31,27 @@ Manual verification guide for the clickable prototype. Derived from [AI_Engineer
 
 ---
 
-
-
 ### US-01 — Cold client knows what to do (#03 Where to Start)
 
 **As** Alex (new client), **I want** an obvious next action, **so that** I can start my return without training.
 
 - [x] Within ~10 seconds on `/client/home`, the primary action is obvious (W-2 / “Do this next”)
-- [ ] Headline communicates getting the return started
-- [ ] To-do checklist is visible (with strikethrough for completed items)
-- [ ] Secondary items don’t overpower the primary CTA
-- [ ] Client nav always shows **Home** and **Messages**
+- [x] Headline is clear and generic (e.g. “Your 2025 tax return”)
+- [x] To-do checklist is visible (with strikethrough for completed items)
+- [x] Secondary items don’t overpower the primary CTA
+- [x] Client nav always shows **Home** and **Messages**
 
 ---
-
-
 
 ### US-02 — Client sees return progress (#06 Status)
 
 **As** Alex, **I want** to see where my return is, **so that** I know what’s done and what’s ahead.
 
-- [ ] Return status timeline/stages appear on client home
-- [ ] Completing the W-2 task advances the story (home updates; next task or waiting state)
-- [ ] Progress feels consistent after refresh only for what’s persisted (task state is session-only — note if reset)
+- [x] Return status timeline/stages appear on client home
+- [x] Completing the W-2 task advances the story (home updates; next task or waiting state)
+- [ ] Completing a task updates progress in the same session (refresh may reset — that’s expected for the demo)
 
 ---
-
-
 
 ### US-03 — Collaboration stays on the work (#02 Collaboration)
 
@@ -74,21 +64,17 @@ Manual verification guide for the clickable prototype. Derived from [AI_Engineer
 
 ---
 
-
-
 ### US-04 — Don’t lose my place (#04 Navigation)
 
 **As** Alex, **I want** to move between task ↔ document ↔ message without getting lost, **so that** I can finish the request.
 
-- [ ] From home → open primary task → page has breadcrumbs / back to home
-- [ ] From task → related document (if linked) → can return toward home/task
-- [ ] From task or document → related message → can return without dead ends
-- [ ] From a message thread → easy path back to **Messages** list and/or **Home**
+- [x] From home → open primary task → page has breadcrumbs / back to home
+- [x] From task → related document (if linked) → can return toward home/task
+- [x] From task or document → related message → can return without dead ends
+- [x] From a message thread → easy path back to **Messages** list and/or **Home**
 - [ ] Deep links feel intentional (object relationships, not random pages)
 
 ---
-
-
 
 ### US-05 — Jordan prepares assigned work (#07 Dashboard, #09 Complexity)
 
@@ -107,8 +93,6 @@ Manual verification guide for the clickable prototype. Derived from [AI_Engineer
 
 ---
 
-
-
 ### US-06 — Review fields with clear affordances (#08 Clickable vs Editable)
 
 **As** Jordan, **I want** field states to look different, **so that** I know what I can trust or edit.
@@ -121,8 +105,6 @@ Manual verification guide for the clickable prototype. Derived from [AI_Engineer
 
 ---
 
-
-
 ### US-07 — Trace a number to the W-2 (#01 Traceability)
 
 **As** Jordan, **I want** to see where a value came from, **so that** I can defend the return.
@@ -133,8 +115,6 @@ Manual verification guide for the clickable prototype. Derived from [AI_Engineer
 - [ ] At least the individual W-2 path works end-to-end on Alex
 
 ---
-
-
 
 ### US-08 — Trust and correct AI (#10 Trustworthy AI)
 
@@ -151,8 +131,6 @@ Manual verification guide for the clickable prototype. Derived from [AI_Engineer
 
 ---
 
-
-
 ### US-09 — Multi-role Jordan (#05 Role-Aware — dual context)
 
 **As** Jordan, **I want** to use the product as preparer and as a taxpayer for my own return, **so that** one product covers both contexts.
@@ -166,8 +144,6 @@ Manual verification guide for the clickable prototype. Derived from [AI_Engineer
 
 ---
 
-
-
 ### US-10 — Honesty about the fake (#constraints / README)
 
 **As** a grader, **I want** to know what’s simulated, **so that** I’m not misled.
@@ -177,8 +153,6 @@ Manual verification guide for the clickable prototype. Derived from [AI_Engineer
 - [ ] UI does not pretend live OCR/LLM is running (stubs/copy stay honest)
 
 ---
-
-
 
 ### Cross-path smoke (video-shaped)
 
@@ -192,8 +166,6 @@ Walk this once without stopping for polish notes.
 
 ---
 
-
-
 ## Deferred / stretch
 
 These appear in the case study or overview but are **not fully built** (or were intentionally cut). Verify only if you implement them later.
@@ -204,8 +176,6 @@ These appear in the case study or overview but are **not fully built** (or were 
 - [ ] CPA can leave an internal note that client cannot see — *Deferred*
 - [ ] Outstanding requests / next-action owner on firm return workspace — *Deferred / light*
 
-
-
 ### Roles (#05) — full six lenses
 
 - [ ] Business owner (Sam) distinct client landing — *Deferred (seeded, off picker)*
@@ -214,26 +184,18 @@ These appear in the case study or overview but are **not fully built** (or were 
 - [ ] Seasonal staff persona / nav differences — *Deferred*
 - [ ] Always-visible in-app role switcher in the shell — *Removed — use picker via GreenGrowth*
 
-
-
 ### Status (#06) — firm + shared language polish
 
 - [ ] Firm return workspace has a clear status strip matching client language — *Deferred / light*
 - [ ] Client and firm show the same stage meaning side-by-side in one demo beat — *Partial (client strong; firm light)*
 
-
-
 ### Where to start (#03) — post-onboarding variant
 
 - [ ] Distinct “onboarding done” home chrome vs first-run — *Removed (unified home; Messages always on)*
 
-
-
 ### Complexity (#09) — return-workspace hierarchy
 
 - [ ] Hundreds of line items inside a return with in-return search — *Out of scope (scale is on firm queue)*
-
-
 
 ### Navigation / IA extras
 
@@ -241,8 +203,6 @@ These appear in the case study or overview but are **not fully built** (or were 
 - [ ] Mid-switch deep-link preserve with toast when changing persona — *Not emphasized*
 
 ---
-
-
 
 ## Ship package (M11)
 
@@ -257,8 +217,6 @@ Required by the case study deliverables — not optional for submission.
 - [ ] Optional video beat: Jordan personal context (cut first if short on time)
 
 ---
-
-
 
 ## Challenge coverage map (quick)
 
@@ -278,8 +236,6 @@ Required by the case study deliverables — not optional for submission.
 
 
 ---
-
-
 
 ## Session log (optional)
 

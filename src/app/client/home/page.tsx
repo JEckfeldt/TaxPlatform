@@ -63,14 +63,15 @@ export default function ClientHomePage() {
         </div>
       ) : null}
 
-      <div className="space-y-2">
-        <p className="text-muted-foreground text-sm">
-          {persona?.name ?? "Alex Rivera"} · {taxReturn?.taxYear} return
-        </p>
-        <PageTitle>Let&apos;s get your return started</PageTitle>
-      </div>
-
-      {statusView ? <ReturnStatusTimeline view={statusView} /> : null}
+      <header className="space-y-4">
+        <div className="space-y-2">
+          <p className="text-muted-foreground text-sm">
+            {persona?.name ?? "Alex Rivera"} · {taxReturn?.taxYear} return
+          </p>
+          <PageTitle>Your {taxReturn?.taxYear ?? 2025} tax return</PageTitle>
+        </div>
+        {statusView ? <ReturnStatusTimeline view={statusView} /> : null}
+      </header>
 
       <OutstandingRequests threads={requests} />
 
