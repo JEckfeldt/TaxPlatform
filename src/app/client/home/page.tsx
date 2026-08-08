@@ -21,8 +21,6 @@ export default function ClientHomePage() {
   const { persona } = usePersona();
   const { tasks, getReturn, threads } = useClientDemo();
 
-  const isJordanPersonal = persona?.id === "jordan-personal";
-
   if (persona && persona.shell !== "client") {
     return (
       <div className="space-y-3 py-12">
@@ -53,16 +51,6 @@ export default function ClientHomePage() {
 
   return (
     <div className="space-y-8 sm:space-y-10">
-      {isJordanPersonal ? (
-        <div className="border-border border-l-primary border-l-2 py-1 pl-4 text-sm">
-          <p className="font-medium">Personal filing context</p>
-          <p className="text-muted-foreground mt-1">
-            You&apos;re viewing your personal return — not the firm work queue.
-            Open GreenGrowth in the header to pick Jordan (CPA) again.
-          </p>
-        </div>
-      ) : null}
-
       <header className="space-y-4">
         <div className="space-y-2">
           <p className="text-muted-foreground text-sm">

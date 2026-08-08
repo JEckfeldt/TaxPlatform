@@ -15,6 +15,10 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { threadForTask } from "@/lib/client-navigation";
+import {
+  isQuestionnaireTask,
+  isW2UploadTask,
+} from "@/lib/client-task-kinds";
 import { DOCUMENTS } from "@/lib/fixtures/seed";
 import { cn } from "@/lib/utils";
 
@@ -44,8 +48,8 @@ export default function TaskPage({
     );
   }
 
-  const isUpload = task.id === "task-alex-w2";
-  const isQuestionnaire = task.id === "task-alex-questionnaire";
+  const isUpload = isW2UploadTask(task.id);
+  const isQuestionnaire = isQuestionnaireTask(task.id);
   const done = task.status === "done";
 
   function finish() {

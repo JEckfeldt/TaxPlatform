@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button";
+import { isW2UploadTask } from "@/lib/client-task-kinds";
 import type { Task } from "@/lib/types";
 import { cn } from "@/lib/utils";
 
@@ -27,7 +28,7 @@ export function NextActionHero({
     );
   }
 
-  const isUpload = task.id === "task-alex-w2";
+  const isUpload = isW2UploadTask(task.id);
 
   return (
     <section className="border-primary/30 bg-card rounded-xl border-2 px-5 py-6 sm:px-6 sm:py-7">

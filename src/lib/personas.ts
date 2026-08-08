@@ -38,7 +38,7 @@ export const PERSONAS: Persona[] = [
     role: "preparer",
     shell: "client",
     description: "Same person in client context for their own return.",
-    showInPicker: true,
+    showInPicker: false,
     pickerLabel: "Personal filing",
     secondaryLabel: "Personal filing",
   },

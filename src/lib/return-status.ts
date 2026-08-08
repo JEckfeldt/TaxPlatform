@@ -1,3 +1,7 @@
+import {
+  isQuestionnaireTask,
+  isW2UploadTask,
+} from "@/lib/client-task-kinds";
 import type { ReturnStatus, Task, TaxReturn } from "@/lib/types";
 
 export type ClientStageId = "gather" | "prepare" | "review" | "file";
@@ -150,15 +154,15 @@ export function deriveReturnFromClientTasks(
   }
 
   const blockers: string[] = [];
-  if (incomplete.some((t) => t.id === "task-alex-w2")) {
+  if (incomplete.some((t) => isW2UploadTask(t.id))) {
     blockers.push("Missing W-2");
   }
-  if (incomplete.some((t) => t.id === "task-alex-questionnaire")) {
+  if (incomplete.some((t) => isQuestionnaireTask(t.id))) {
     blockers.push("Onboarding questions incomplete");
   }
 
   let nextAction = base.nextAction;
-  if (primary?.id === "task-alex-w2") {
+  if (primary && isW2UploadTask(primary.id)) {
     nextAction = "Upload your W-2 from Acme Corp";
   } else if (primary) {
     nextAction = primary.title;

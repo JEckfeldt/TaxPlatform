@@ -1,248 +1,156 @@
 # GreenGrowth — Manual QA Checklist
 
-Manual verification guide for the clickable prototype. Derived from [AI_Engineer_Case_Study_Updated.pdf](./AI_Engineer_Case_Study_Updated.pdf), [project overview.md](./project%20overview.md), and current app behavior ([project-status.md](./project-status.md)).
+Quick checks against the ten case study challenges. Click the boxes in the markdown editor (or preview, if supported) to mark pass.
 
-**How to use**
+**Demo tip:** Alex = client · Jordan (CPA) = firm · **Personal filing** in firm nav = Jordan’s own return (same client home as Alex). Click **GreenGrowth** → Jordan CPA to return to firm work.
 
-1. Run locally (`npm run dev`) or use the hosted URL once deployed.
-2. Work top-to-bottom through **Must pass now**.
-3. Click the checkboxes below to mark pass (GitHub-style task lists — works in the markdown editor and most previews).
-4. Treat **Deferred / stretch** as optional — do not block ship on those unless you build them.
-5. Finish with **Ship package** before submission.
+> If checkboxes don’t toggle, edit this file directly and enable `markdown.editor.checkbox.enabled` in settings.
 
-> **Tip (Cursor / VS Code):** Prefer editing this file in the markdown editor (not only preview) so checkbox clicks persist to disk. If clicks do nothing, enable `markdown.editor.checkbox.enabled` in settings.
+### Glossary
 
-**Personas on the picker today:** Alex (Client) · Jordan (CPA) · Jordan · Personal filing  
-**Switch personas:** click **GreenGrowth** in the header → landing picker (no navbar role dropdown).
 
----
+| Term       | Meaning                                                                            |
+| ---------- | ---------------------------------------------------------------------------------- |
+| **QA**     | Quality assurance — manual checks that the product works as intended               |
+| **CPA**    | Certified Public Accountant — here, the tax preparer (Jordan on the firm side)     |
+| **AI**     | Artificial intelligence — in this prototype, all AI output is simulated / stubbed  |
+| **OCR**    | Optical character recognition — reading text from scanned docs; **not** real here  |
+| **W-2**    | US wage and tax statement (employee income form used in the Alex demo)             |
+| **CTA**    | Call to action — the main button or prompt you want the user to click next         |
+| **UI**     | User interface — what you see and click on screen                                  |
+| **nav**    | Navigation — menus and links used to move between pages                            |
+| **README** | Project readme file (usually `README.md`) with setup and “real vs simulated” notes |
+| **npm**    | Node package manager — used to run scripts like `npm run build` / `npm run dev`    |
 
-## Must pass now
-
-### Global / shell
-
-- [x] Landing `/` shows GreenGrowth branding and persona choices
-- [x] Choosing **Alex** lands in the **client** shell on `/client/home`
-- [x] Choosing **Jordan (CPA)** lands in the **firm** shell on `/firm/dashboard`
-- [x] Choosing **Jordan · Personal filing** lands on **client** home for Jordan’s return
-- [x] Clicking **GreenGrowth** in the header returns to the persona picker
-- [x] Client and firm shells feel like one product (same brand/theme), not two apps
-- [x] Mobile-width (~375px): header, nav, and primary CTAs remain usable
 
 ---
 
-### US-01 — Cold client knows what to do (#03 Where to Start)
+## 01 — Source Document Traceability
 
-**As** Alex (new client), **I want** an obvious next action, **so that** I can start my return without training.
+**Summary:** A CPA should be able to trust a number by tracing it back to a source document, page/region, and any transform — without real OCR.
 
-- [x] Within ~10 seconds on `/client/home`, the primary action is obvious (W-2 / “Do this next”)
-- [x] Headline is clear and generic (e.g. “Your 2025 tax return”)
-- [x] To-do checklist is visible (with strikethrough for completed items)
-- [x] Secondary items don’t overpower the primary CTA
-- [x] Client nav always shows **Home** and **Messages**
+**Examples in this app:** Open Alex’s return as Jordan → select wages or withholding → side panel shows fake W-2 highlight + transform note.
 
----
-
-### US-02 — Client sees return progress (#06 Status)
-
-**As** Alex, **I want** to see where my return is, **so that** I know what’s done and what’s ahead.
-
-- [x] Return status timeline/stages appear on client home
-- [x] Completing the W-2 task advances the story (home updates; next task or waiting state)
-- [ ] Completing a task updates progress in the same session (refresh may reset — that’s expected for the demo)
+- [x] Easy to open source trace from a return field
+- [x] Source doc / page or region is clear
+- [x] Feels defensible, not a random popup
 
 ---
 
-### US-03 — Collaboration stays on the work (#02 Collaboration)
+## 02 — Client & CPA Collaboration
 
-**As** Alex, **I want** messages tied to my tax work, **so that** I’m not dumped into a generic inbox.
+**Summary:** Communication should stay attached to the work (docs/tasks/issues), show who acts next, and not feel like a generic inbox.
 
-- [ ] Home shows a **Waiting on you** request when a client-visible thread needs me
-- [ ] Opening the request goes to a message thread (not a blank inbox dump)
-- [ ] I can reply in the thread; reply appears in the conversation
-- [ ] Thread relates to a document/task (related links or seed linkage visible)
+**Examples in this app:** Client home “Waiting on you” → message thread → reply. Threads link to related task/doc where seeded.
 
----
-
-### US-04 — Don’t lose my place (#04 Navigation)
-
-**As** Alex, **I want** to move between task ↔ document ↔ message without getting lost, **so that** I can finish the request.
-
-- [x] From home → open primary task → page has breadcrumbs / back to home
-- [x] From task → related document (if linked) → can return toward home/task
-- [x] From task or document → related message → can return without dead ends
-- [x] From a message thread → easy path back to **Messages** list and/or **Home**
-- [ ] Deep links feel intentional (object relationships, not random pages)
+- [x] Messages feel tied to tax work, not a random inbox
+- [ ] Easy to find and open what’s waiting on the client
+- [ ] Can reply in-context and see the conversation update
 
 ---
 
-### US-05 — Jordan prepares assigned work (#07 Dashboard, #09 Complexity)
+## 03 — Where to Start
 
-**As** Jordan (CPA), **I want** a ranked queue of *my* returns, **so that** I know what to work on now.
+**Summary:** A first-time client should understand their next action within ~10 seconds — clear hierarchy, not a cluttered dashboard.
 
-- [ ] Dashboard answers “what should I work on right now?” without vanity KPIs
-- [ ] Queue only shows returns where Jordan is the preparer (no other preparer’s book)
-- [ ] **Alex Rivera** appears at the **top** of the list when visible
-- [ ] Search by client name narrows the list (e.g. `Alex` / `Rivera`)
-- [ ] Entity chips (All entities / Individual / Business) change the subset
-- [ ] Segments (All / Waiting on client / Blocked / Needs prep) change the subset
-- [ ] “Showing X of Y” updates with filters
-- [ ] Empty search/filter state is friendly (no crash)
-- [ ] Clicking a row opens that return workspace
-- [ ] Firm nav does **not** have a separate “Alex return” shortcut (use the queue)
+**Examples in this app:** Alex home → “Do this next” / Upload W-2 hero, to-do list, status stepper under the title.
+
+- [ ] Next action is obvious within ~10 seconds
+- [ ] Primary CTA stands out over secondary tasks
+- [ ] Home and Messages are always reachable in client nav
 
 ---
 
-### US-06 — Review fields with clear affordances (#08 Clickable vs Editable)
+## 04 — Getting Lost in the App
 
-**As** Jordan, **I want** field states to look different, **so that** I know what I can trust or edit.
+**Summary:** Moving between tasks, documents, and messages shouldn’t lose context — breadcrumbs, back paths, related links.
 
-- [ ] Open **Alex Rivera** return → return review UI loads
-- [ ] Field list shows multiple states (AI-generated, verified, needs approval, editable, locked, clickable)
-- [ ] Legend or labels make states understandable
-- [ ] Locked field explains why (copy on the row/panel)
-- [ ] AI-generated vs verified are visually distinct
+**Examples in this app:** Task ↔ document ↔ message related links; breadcrumbs; Back to home on deep pages.
 
----
-
-### US-07 — Trace a number to the W-2 (#01 Traceability)
-
-**As** Jordan, **I want** to see where a value came from, **so that** I can defend the return.
-
-- [ ] Selecting a field opens a side panel with source trace
-- [ ] Source shows document name, page/region, and transform note
-- [ ] Fake W-2 preview highlights a region (not a real PDF parse)
-- [ ] At least the individual W-2 path works end-to-end on Alex
+- [ ] Easy to find back / home from deep pages
+- [ ] Related objects (task / doc / message) are discoverable
+- [ ] Mobile hamburger links navigate correctly (Home, Messages)
 
 ---
 
-### US-08 — Trust and correct AI (#10 Trustworthy AI)
+## 05 — Role-Aware Experiences
 
-**As** Jordan, **I want** AI explanations and a way to correct them, **so that** I stay in control.
+**Summary:** One product, different roles — nav and context should change without feeling like separate apps. Multi-role users can switch (e.g. preparer with a personal return).
 
-- [ ] Panel shows AI summary / rationale / evidence (via stub, not a real model)
-- [ ] Confidence is visible at an appropriate depth
-- [ ] Low-confidence example is seeded and noticeable
-- [ ] Warning/conflict example is seeded and noticeable
-- [ ] **Accept** updates the field state (e.g. toward verified)
-- [ ] **Edit** lets me change the value and save
-- [ ] **Reject** marks the field as needing attention
-- [ ] Correction stays in the review flow (no dead-end page)
+**Examples in this app:** Picker → Alex (client) vs Jordan CPA (firm). Jordan personal filing via firm nav only (same client home as Alex).
+
+- [ ] Client vs CPA shells clearly differ (nav / landing)
+- [ ] From CPA nav, **Personal filing** opens a client home that matches Alex’s (status, W-2 to-dos, messages)
+- [ ] From personal filing, **Firm work** returns to the CPA dashboard
+- [ ] Jordan personal is not on the landing picker
 
 ---
 
-### US-09 — Multi-role Jordan (#05 Role-Aware — dual context)
+## 06 — Return Status & Progress
 
-**As** Jordan, **I want** to use the product as preparer and as a taxpayer for my own return, **so that** one product covers both contexts.
+**Summary:** Status should mean the same idea to everyone — where you are, what’s next — without jargon that clients and staff read differently.
 
-- [ ] From picker, **CPA** → firm dashboard (preparer world)
-- [ ] From picker, **Personal filing** → client home for Jordan’s return
-- [ ] Personal home shows a clear “personal filing / not firm queue” banner
-- [ ] Personal home has a next action / to-do (e.g. confirm dependents)
-- [ ] Easy to switch back: GreenGrowth → pick **Jordan (CPA)** again
-- [ ] Client vs firm nav/chrome make the context change obvious
+**Examples in this app:** Client Gather → Prepare → Review → File stepper; completing a task advances the demo story in-session.
 
----
-
-### US-10 — Honesty about the fake (#constraints / README)
-
-**As** a grader, **I want** to know what’s simulated, **so that** I’m not misled.
-
-- [ ] README states product is a UX prototype with simulated data/AI
-- [ ] README lists real vs simulated (auth, OCR, LLM, tax engine, etc.)
-- [ ] UI does not pretend live OCR/LLM is running (stubs/copy stay honest)
+- [ ] Client can tell where the return is in the process
+- [ ] Completing a task updates progress in the same session
+- [ ] Status UI stays readable (not a cluttered status dump)
 
 ---
 
-### Cross-path smoke (video-shaped)
+## 07 — An Actionable Dashboard
 
-Walk this once without stopping for polish notes.
+**Summary:** A CPA landing should answer “what should I work on right now?” with ranked work and clear next actions — not vanity metrics.
 
-- [ ] Picker → Alex → home primary CTA clear
-- [ ] Alex → task → message loop → back to Home/Messages
-- [ ] GreenGrowth → Jordan CPA → dashboard → Alex at top → open review
-- [ ] Trace + AI accept/edit/reject on Alex return
-- [ ] GreenGrowth → Jordan personal → banner + client nav → back to CPA
+**Examples in this app:** Jordan dashboard → preparer-only queue, Alex pinned at top, urgency + next action on each row.
 
----
-
-## Deferred / stretch
-
-These appear in the case study or overview but are **not fully built** (or were intentionally cut). Verify only if you implement them later.
-
-### Collaboration (#02) — firm side
-
-- [ ] Firm UI shows internal vs client-visible threads — *Deferred*
-- [ ] CPA can leave an internal note that client cannot see — *Deferred*
-- [ ] Outstanding requests / next-action owner on firm return workspace — *Deferred / light*
-
-### Roles (#05) — full six lenses
-
-- [ ] Business owner (Sam) distinct client landing — *Deferred (seeded, off picker)*
-- [ ] Reviewer (Riley) with reduced edit affordances vs preparer — *Deferred*
-- [ ] Firm admin persona / nav differences — *Deferred*
-- [ ] Seasonal staff persona / nav differences — *Deferred*
-- [ ] Always-visible in-app role switcher in the shell — *Removed — use picker via GreenGrowth*
-
-### Status (#06) — firm + shared language polish
-
-- [ ] Firm return workspace has a clear status strip matching client language — *Deferred / light*
-- [ ] Client and firm show the same stage meaning side-by-side in one demo beat — *Partial (client strong; firm light)*
-
-### Where to start (#03) — post-onboarding variant
-
-- [ ] Distinct “onboarding done” home chrome vs first-run — *Removed (unified home; Messages always on)*
-
-### Complexity (#09) — return-workspace hierarchy
-
-- [ ] Hundreds of line items inside a return with in-return search — *Out of scope (scale is on firm queue)*
-
-### Navigation / IA extras
-
-- [ ] Firm deep links for docs/threads matching client richness — *Deferred*
-- [ ] Mid-switch deep-link preserve with toast when changing persona — *Not emphasized*
+- [ ] Dashboard feels like a work queue, not a metrics board
+- [ ] Clear next action per return row
+- [ ] Easy to open a return from the queue (Alex path works)
 
 ---
 
-## Ship package (M11)
+## 08 — Clickable vs. Editable
 
-Required by the case study deliverables — not optional for submission.
+**Summary:** Field interaction states should be consistent and obvious — AI vs verified vs locked shouldn’t look the same.
 
-- [ ] `npm run build` succeeds
-- [ ] Deployed on Vercel (or equivalent); public URL works
-- [ ] Smoke on **prod URL**: picker → Alex path → Jordan dashboard → Alex review
-- [ ] Walkthrough video ≤ 10 minutes
-- [ ] Video hits client-first then CPA path (see overview script)
-- [ ] Video (or README) calls out real vs simulated
-- [ ] Optional video beat: Jordan personal context (cut first if short on time)
+**Examples in this app:** Alex return review field list + legend (AI-generated, verified, needs approval, editable, locked, clickable).
+
+- [ ] Different field states are visually distinct
+- [ ] Locked / explaining “why” is understandable
+- [ ] Affordance language stays consistent across the review screen
 
 ---
 
-## Challenge coverage map (quick)
+## 09 — Complexity Made Navigable
 
+**Summary:** Lots of work should stay approachable — search, filters, progressive disclosure — without drowning the user.
 
-| #   | Challenge                    | Must-pass coverage         | Deferred gap                   |
-| --- | ---------------------------- | -------------------------- | ------------------------------ |
-| 01  | Source Document Traceability | US-07                      | —                              |
-| 02  | Client & CPA Collaboration   | US-03 (client)             | Firm internal/client split     |
-| 03  | Where to Start               | US-01                      | Post-onboarding variant        |
-| 04  | Getting Lost in the App      | US-04                      | Firm-side depth                |
-| 05  | Role-Aware Experiences       | US-09 + global picker      | Riley / Sam / admin / seasonal |
-| 06  | Return Status & Progress     | US-02                      | Firm status strip              |
-| 07  | An Actionable Dashboard      | US-05                      | —                              |
-| 08  | Clickable vs. Editable       | US-06                      | —                              |
-| 09  | Complexity Made Navigable    | US-05 (queue scale/search) | In-return line-item catalog    |
-| 10  | Trustworthy AI               | US-08                      | —                              |
+**Examples in this app:** Large firm queue + client name search + entity/segment filters + “Showing X of Y”.
 
+- [ ] Search / filters make a large list usable
+- [ ] Empty or narrow results don’t feel broken
+- [ ] Hierarchy stays simple (summary queue → detail return)
 
 ---
 
-## Session log (optional)
+## 10 — Trustworthy AI
 
+**Summary:** Show enough AI transparency (what / why / confidence / evidence) and let the user correct output without leaving the flow.
 
-| Date | Tester | Environment  | Result summary |
-| ---- | ------ | ------------ | -------------- |
-|      |        | local / prod |                |
-|      |        |              |                |
+**Examples in this app:** Review side panel → confidence, evidence, accept / edit / reject; low-confidence and warning fields seeded.
 
+- [ ] AI explanation is understandable without model jargon overload
+- [ ] Can accept, edit, or reject without leaving review
+- [ ] Uncertainty / warning cases are visible in the demo
 
+---
+
+## Ship (deliverables)
+
+Not a numbered challenge, but required for submission.
+
+- [ ] Production build works (`npm run build`)
+- [ ] Hosted URL works end-to-end
+- [ ] README explains real vs simulated
+- [ ] Walkthrough video ≤ 10 min (client-first, then CPA)

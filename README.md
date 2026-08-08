@@ -41,10 +41,9 @@ Landing picker options (more roles stay in seed):
 | Persona | Path |
 | --- | --- |
 | Alex Rivera — Client | Client home (what’s next) |
-| Jordan Lee — CPA | Firm dashboard |
-| Jordan Lee — Personal filing | Client home for Jordan’s own return |
+| Jordan Lee — CPA | Firm dashboard (+ **Personal filing** nav → same client home as Alex) |
 
-Client nav always includes Home and Messages. Click **GreenGrowth** in the header to return to the picker. Task completions, return stage, and message replies are in-memory for the session and reset on refresh.
+Client nav always includes Home and Messages. As Jordan CPA, use **Personal filing** in the firm nav for his own return (identical client UX to Alex); use **Firm work** in the client nav to return to the CPA queue. Click **GreenGrowth** in the header to return to the picker. Task completions, return stage, and message replies are in-memory for the session and reset on refresh.
 
 ## Scripts
 

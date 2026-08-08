@@ -3,16 +3,15 @@
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { useEffect, useId, useRef, useState } from "react";
+import { usePersona } from "@/components/persona/persona-provider";
+import type { NavItem } from "@/lib/nav";
 import { cn } from "@/lib/utils";
 
-export function MobileNavMenu({
-  nav,
-}: {
-  nav: { href: string; label: string }[];
-}) {
+export function MobileNavMenu({ nav }: { nav: NavItem[] }) {
   const [open, setOpen] = useState(false);
   const rootRef = useRef<HTMLDivElement>(null);
   const menuId = useId();
+  const { selectPersona } = usePersona();
 
   useEffect(() => {
     if (!open) return;
@@ -59,19 +58,41 @@ export function MobileNavMenu({
           role="menu"
           className="border-border bg-popover text-popover-foreground absolute top-full left-0 z-50 mt-2 min-w-44 rounded-lg border p-1 shadow-md"
         >
-          {nav.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              role="menuitem"
-              onClick={() => setOpen(false)}
-              className={cn(
-                "hover:bg-muted focus-visible:bg-muted block rounded-md px-3 py-2.5 text-sm font-medium outline-none",
-              )}
-            >
-              {item.label}
-            </Link>
-          ))}
+          {nav.map((item) => {
+            const key = item.href ?? item.switchToPersona ?? item.label;
+            if (item.switchToPersona) {
+              return (
+                <button
+                  key={key}
+                  type="button"
+                  role="menuitem"
+                  onClick={() => {
+                    setOpen(false);
+                    selectPersona(item.switchToPersona!);
+                  }}
+                  className={cn(
+                    "hover:bg-muted focus-visible:bg-muted block w-full rounded-md px-3 py-2.5 text-left text-sm font-medium outline-none",
+                  )}
+                >
+                  {item.label}
+                </button>
+              );
+            }
+            if (!item.href) return null;
+            return (
+              <Link
+                key={key}
+                href={item.href}
+                role="menuitem"
+                onClick={() => setOpen(false)}
+                className={cn(
+                  "hover:bg-muted focus-visible:bg-muted block rounded-md px-3 py-2.5 text-sm font-medium outline-none",
+                )}
+              >
+                {item.label}
+              </Link>
+            );
+          })}
         </div>
       ) : null}
     </div>

@@ -1,6 +1,6 @@
 # GreenGrowth — Project Status
 
-**Last updated:** 2026-08-07  
+**Last updated:** 2026-08-08  
 **Product name:** GreenGrowth  
 **Repo folder:** TaxPlatform  
 
@@ -12,7 +12,7 @@ Living snapshot of what exists in the codebase. Update this file whenever featur
 
 | | |
 | --- | --- |
-| **Done recently** | Removed navbar persona dropdown; unified client home; UI refresh |
+| **Done recently** | Jordan personal = Alex client UX; picker is Alex + CPA only |
 | **Next up** | M11 ship (deploy + video); optional Riley/extra role lenses |
 | **Blocked** | None |
 
@@ -39,9 +39,9 @@ Living snapshot of what exists in the codebase. Update this file whenever featur
 
 ## What’s shipped (clickable)
 
-- Persona picker — Alex, Jordan CPA, Jordan · Personal filing (header links back to `/`)
+- Persona picker — Alex + Jordan CPA (header brand links back to `/`)
 - Full client loop — home, status, requests, tasks, docs, messages/replies (Home + Messages always in nav)
-- Jordan personal return — same what’s-next home + context banner + dependents task
+- Jordan dual-context — Firm nav **Personal filing** ↔ client nav **Firm work**; personal home matches Alex (W-2 path)
 - CPA dashboard — preparer-scoped queue, search, entity + status segments (no firm-wide All/My)
 - CPA return review (Alex) — field affordances, W-2 source trace, AI explain/correct
 - Other firm returns — callout linking to Alex demo path
@@ -99,6 +99,10 @@ Living snapshot of what exists in the codebase. Update this file whenever featur
 ---
 
 ## Changelog (newest first)
+
+### 2026-08-08
+
+- Jordan personal filing matches Alex client home; **Firm work** nav back to CPA; removed from picker
 
 ### 2026-08-07
 

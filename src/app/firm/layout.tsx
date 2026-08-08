@@ -1,18 +1,9 @@
-import { AppHeader } from "@/components/shell/app-header";
-
-const nav = [{ href: "/firm/dashboard", label: "Dashboard" }];
+import { FirmShell } from "@/components/firm/firm-shell";
 
 export default function FirmLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  return (
-    <div className="flex min-h-full flex-1 flex-col">
-      <AppHeader eyebrow="Firm" nav={nav} />
-      <div className="mx-auto w-full max-w-5xl flex-1 px-4 py-5 sm:px-6 sm:py-8">
-        {children}
-      </div>
-    </div>
-  );
+  return <FirmShell>{children}</FirmShell>;
 }
