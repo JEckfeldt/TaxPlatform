@@ -12,7 +12,7 @@ Living snapshot of what exists in the codebase. Update this file whenever featur
 
 | | |
 | --- | --- |
-| **Done recently** | Jordan personal = Alex client UX; picker is Alex + CPA only |
+| **Done recently** | Firm return single Messages card (whose turn + latest); firm thread reply |
 | **Next up** | M11 ship (deploy + video); optional Riley/extra role lenses |
 | **Blocked** | None |
 
@@ -26,7 +26,7 @@ Living snapshot of what exists in the codebase. Update this file whenever featur
 | M05 | Role-Aware Experiences | Partial | Dual-context done; Riley / ≥4 lenses deferred |
 | M03 | Where to Start | Done | W-2 what’s-next home; Home + Messages always in nav |
 | M06 | Return Status & Progress | Done | Client timeline; firm strip still light |
-| M02 | Client & CPA Collaboration | Done | Client threads + replies + home requests; firm UI deferred |
+| M02 | Client & CPA Collaboration | Done | Client + firm return threads/replies; firm-wide inbox deferred |
 | M04 | Getting Lost in the App | Done | Breadcrumbs, related links, Back to home |
 | M07 | An Actionable Dashboard | Done | Urgency rank, segment chips |
 | M08 | Clickable vs. Editable | Done | Six field states on Alex review + dashboard chips |
@@ -44,6 +44,7 @@ Living snapshot of what exists in the codebase. Update this file whenever featur
 - Jordan dual-context — Firm nav **Personal filing** ↔ client nav **Firm work**; personal home matches Alex (W-2 path)
 - CPA dashboard — preparer-scoped queue, search, entity + status segments (no firm-wide All/My)
 - CPA return review (Alex) — field affordances, W-2 source trace, AI explain/correct
+- CPA return collab — one Messages card (Your turn / Client’s turn + latest); `/firm/messages/[id]` read/reply
 - Other firm returns — callout linking to Alex demo path
 - Brand/theme — GreenGrowth; sharper forest/sage; Sora titles + Manrope UI; de-carded surfaces
 
@@ -73,8 +74,9 @@ Living snapshot of what exists in the codebase. Update this file whenever featur
 | `/client/messages` | Thread list |
 | `/client/messages/[id]` | Thread + reply |
 | `/firm/dashboard` | CPA work queue (search + filters) |
-| `/firm/returns/ret-alex-2025` | Deep return review (M08/M01/M10) |
-| `/firm/returns/[id]` | Other returns — header + link to Alex demo |
+| `/firm/returns/ret-alex-2025` | Deep return review (M08/M01/M10) + collab strip |
+| `/firm/returns/[id]` | Other returns — header + collab + link to Alex demo |
+| `/firm/messages/[id]` | CPA client-thread read/reply (firm shell) |
 
 ---
 
@@ -102,6 +104,7 @@ Living snapshot of what exists in the codebase. Update this file whenever featur
 
 ### 2026-08-08
 
+- Firm return single Messages card (whose turn + latest message); `/firm/messages/[id]` replies
 - Jordan personal filing matches Alex client home; **Firm work** nav back to CPA; removed from picker
 
 ### 2026-08-07

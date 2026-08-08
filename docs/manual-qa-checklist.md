@@ -41,11 +41,12 @@ Quick checks against the ten case study challenges. Click the boxes in the markd
 
 **Summary:** Communication should stay attached to the work (docs/tasks/issues), show who acts next, and not feel like a generic inbox.
 
-**Examples in this app:** Client home “Waiting on you” → message  thread → reply. Threads link to related task/doc where seeded.
+**Examples in this app:** Client home “Waiting on you” → message thread → reply. CPA return → one Messages card (whose turn + latest) → `/firm/messages/[id]` reply.
 
 - [x] Messages feel tied to tax work, not a random inbox
 - [x] Easy to find and open what’s waiting on the client
 - [x] Can reply in-context and see the conversation update
+- [ ] On Alex’s return as CPA, one Messages card shows the latest thread, whose turn, and opens the firm thread page
 
 ---
 

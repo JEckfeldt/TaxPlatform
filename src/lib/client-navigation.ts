@@ -44,6 +44,15 @@ export function outstandingClientRequests(
   );
 }
 
+export function outstandingPreparerRequests(
+  threads: MessageThread[],
+  returnId: string | undefined,
+): MessageThread[] {
+  return clientThreadsForReturn(threads, returnId).filter(
+    (t) => t.nextActionOwner === "preparer",
+  );
+}
+
 export function relatedFromThread(thread: MessageThread): {
   taskId?: string;
   documentId?: string;

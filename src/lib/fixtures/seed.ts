@@ -131,6 +131,21 @@ export const THREADS: MessageThread[] = [
     ],
   },
   {
+    id: "thread-alex-question",
+    returnId: "ret-alex-2025",
+    subject: "Question about estimated payments",
+    visibility: "client",
+    nextActionOwner: "preparer",
+    messages: [
+      {
+        id: "msg-alex-q1",
+        authorId: "alex",
+        body: "I made a Q4 estimated payment in January — do you need the confirmation number, or is the bank statement enough?",
+        createdAt: "2026-03-14T16:20:00Z",
+      },
+    ],
+  },
+  {
     id: "thread-jordan-w2",
     returnId: "ret-jordan-personal-2025",
     documentId: "doc-jordan-w2",

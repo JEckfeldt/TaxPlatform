@@ -1,11 +1,12 @@
 import Link from "next/link";
+import { ReturnCollabStrip } from "@/components/firm/return-collab-strip";
 import { ReviewWorkspace } from "@/components/firm/review-workspace";
 import { MilestoneStub } from "@/components/shell/milestone-stub";
 import { PageTitle } from "@/components/shell/page-title";
 import { Badge } from "@/components/ui/badge";
 import { buttonVariants } from "@/components/ui/button";
 import { ALEX_RETURN_ID } from "@/lib/fixtures/return-fields";
-import { getFirmReturn, THREADS } from "@/lib/fixtures/seed";
+import { getFirmReturn } from "@/lib/fixtures/seed";
 import { firmStatusLabel } from "@/lib/return-status";
 import { cn } from "@/lib/utils";
 
@@ -16,7 +17,6 @@ export default async function ReturnWorkspacePage({
 }) {
   const { id } = await params;
   const taxReturn = getFirmReturn(id);
-  const threads = THREADS.filter((t) => t.returnId === id);
   const isAlexReview = id === ALEX_RETURN_ID;
 
   if (!taxReturn) {
@@ -82,6 +82,8 @@ export default async function ReturnWorkspacePage({
         </Link>
       </div>
 
+      <ReturnCollabStrip returnId={id} />
+
       {isAlexReview ? (
         <ReviewWorkspace />
       ) : (
@@ -109,23 +111,6 @@ export default async function ReturnWorkspacePage({
           </div>
         </div>
       )}
-
-      <div className="border-border space-y-2 border-t pt-6">
-        <h2 className="text-sm font-semibold tracking-tight">
-          Threads on this return
-        </h2>
-        <ul className="text-muted-foreground list-inside list-disc text-sm">
-          {threads.map((t) => (
-            <li key={t.id}>
-              {t.subject}{" "}
-              <span className="text-foreground">({t.visibility})</span>
-            </li>
-          ))}
-          {threads.length === 0 ? (
-            <li>No threads seeded for this return.</li>
-          ) : null}
-        </ul>
-      </div>
     </div>
   );
 }
