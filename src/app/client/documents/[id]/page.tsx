@@ -59,15 +59,6 @@ export default function DocumentPage({
         </Link>
       </div>
 
-      <div className="border-border/80 bg-muted/30 flex min-h-48 items-center justify-center rounded-xl border border-dashed px-6 py-12 text-center">
-        <div className="space-y-1">
-          <p className="text-sm font-medium">Document preview (simulated)</p>
-          <p className="text-muted-foreground text-xs">
-            No real file — placeholder for the demo walkthrough.
-          </p>
-        </div>
-      </div>
-
       <RelatedObjects
         taskHref={
           relatedTask ? `/client/tasks/${relatedTask.id}` : undefined
@@ -76,6 +67,15 @@ export default function DocumentPage({
         threadHref={thread ? `/client/messages/${thread.id}` : undefined}
         threadLabel={thread?.subject}
       />
+
+      <div className="border-border/80 bg-muted/30 flex min-h-48 items-center justify-center rounded-xl border border-dashed px-6 py-12 text-center">
+        <div className="space-y-1">
+          <p className="text-sm font-medium">Document preview (simulated)</p>
+          <p className="text-muted-foreground text-xs">
+            No real file — placeholder for the demo walkthrough.
+          </p>
+        </div>
+      </div>
     </div>
   );
 }

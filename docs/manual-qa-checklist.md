@@ -41,11 +41,11 @@ Quick checks against the ten case study challenges. Click the boxes in the markd
 
 **Summary:** Communication should stay attached to the work (docs/tasks/issues), show who acts next, and not feel like a generic inbox.
 
-**Examples in this app:** Client home “Waiting on you” → message thread → reply. Threads link to related task/doc where seeded.
+**Examples in this app:** Client home “Waiting on you” → message  thread → reply. Threads link to related task/doc where seeded.
 
 - [x] Messages feel tied to tax work, not a random inbox
-- [ ] Easy to find and open what’s waiting on the client
-- [ ] Can reply in-context and see the conversation update
+- [x] Easy to find and open what’s waiting on the client
+- [x] Can reply in-context and see the conversation update
 
 ---
 
@@ -55,9 +55,9 @@ Quick checks against the ten case study challenges. Click the boxes in the markd
 
 **Examples in this app:** Alex home → “Do this next” / Upload W-2 hero, to-do list, status stepper under the title.
 
-- [ ] Next action is obvious within ~10 seconds
-- [ ] Primary CTA stands out over secondary tasks
-- [ ] Home and Messages are always reachable in client nav
+- [x] Next action is obvious within ~10 seconds
+- [x] Primary CTA stands out over secondary tasks
+- [x] Home and Messages are always reachable in client nav
 
 ---
 
@@ -67,9 +67,9 @@ Quick checks against the ten case study challenges. Click the boxes in the markd
 
 **Examples in this app:** Task ↔ document ↔ message related links; breadcrumbs; Back to home on deep pages.
 
-- [ ] Easy to find back / home from deep pages
-- [ ] Related objects (task / doc / message) are discoverable
-- [ ] Mobile hamburger links navigate correctly (Home, Messages)
+- [x] Easy to find back / home from deep pages
+- [x] Related objects (task / doc / message) are discoverable
+- [x] Mobile hamburger links navigate correctly (Home, Messages)
 
 ---
 
@@ -79,10 +79,10 @@ Quick checks against the ten case study challenges. Click the boxes in the markd
 
 **Examples in this app:** Picker → Alex (client) vs Jordan CPA (firm). Jordan personal filing via firm nav only (same client home as Alex).
 
-- [ ] Client vs CPA shells clearly differ (nav / landing)
-- [ ] From CPA nav, **Personal filing** opens a client home that matches Alex’s (status, W-2 to-dos, messages)
-- [ ] From personal filing, **Firm work** returns to the CPA dashboard
-- [ ] Jordan personal is not on the landing picker
+- [x] Client vs CPA shells clearly differ (nav / landing)
+- [x] From CPA nav, **Personal filing** opens a client home that matches Alex’s (status, W-2 to-dos, messages)
+- [x] From personal filing, **Firm work** returns to the CPA dashboard
+- [x] Jordan personal is not on the landing picker
 
 ---
 
@@ -92,9 +92,9 @@ Quick checks against the ten case study challenges. Click the boxes in the markd
 
 **Examples in this app:** Client Gather → Prepare → Review → File stepper; completing a task advances the demo story in-session.
 
-- [ ] Client can tell where the return is in the process
-- [ ] Completing a task updates progress in the same session
-- [ ] Status UI stays readable (not a cluttered status dump)
+- [x] Client can tell where the return is in the process
+- [x] Completing a task updates progress in the same session
+- [x] Status UI stays readable (not a cluttered status dump)
 
 ---
 
@@ -104,9 +104,9 @@ Quick checks against the ten case study challenges. Click the boxes in the markd
 
 **Examples in this app:** Jordan dashboard → preparer-only queue, Alex pinned at top, urgency + next action on each row.
 
-- [ ] Dashboard feels like a work queue, not a metrics board
-- [ ] Clear next action per return row
-- [ ] Easy to open a return from the queue (Alex path works)
+- [x] Dashboard feels like a work queue, not a metrics board
+- [x] Clear next action per return row
+- [x] Easy to open a return from the queue (Alex path works)
 
 ---
 

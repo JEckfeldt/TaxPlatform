@@ -30,9 +30,6 @@ export function SourcePreview({ source }: { source: FieldSource }) {
           aria-label={`Highlighted region: ${source.regionLabel}`}
         />
       </div>
-      <p className="text-muted-foreground text-xs leading-relaxed">
-        Transform: {source.transformNote}
-      </p>
     </div>
   );
 }
