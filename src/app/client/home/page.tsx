@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { ClientProgress } from "@/components/client/client-progress";
 import { useClientDemo } from "@/components/client/client-demo-provider";
 import { NextActionHero } from "@/components/client/next-action-hero";
 import { OutstandingRequests } from "@/components/client/outstanding-requests";
@@ -9,9 +8,7 @@ import { ReturnStatusTimeline } from "@/components/client/return-status-timeline
 import { SecondaryTaskList } from "@/components/client/secondary-task-list";
 import { usePersona } from "@/components/persona/persona-provider";
 import { PageTitle } from "@/components/shell/page-title";
-import { Badge } from "@/components/ui/badge";
 import {
-  clientFriendlyStatus,
   clientTasksForReturn,
   getPrimaryTask,
   getTaskProgress,
@@ -51,7 +48,6 @@ export default function ClientHomePage() {
   const primary = getPrimaryTask(clientTasks);
   const { done, total } = getTaskProgress(clientTasks);
   const waitingOnPreparer = total > 0 && done === total;
-  const status = clientFriendlyStatus(taxReturn);
   const statusView = buildStatusView(taxReturn, "client");
   const requests = outstandingClientRequests(threads, taxReturn?.id);
 
@@ -72,9 +68,6 @@ export default function ClientHomePage() {
           {persona?.name ?? "Alex Rivera"} · {taxReturn?.taxYear} return
         </p>
         <PageTitle>Let&apos;s get your return started</PageTitle>
-        <div className="flex flex-wrap items-center gap-2">
-          <Badge variant="secondary">{status}</Badge>
-        </div>
       </div>
 
       {statusView ? <ReturnStatusTimeline view={statusView} /> : null}
@@ -82,12 +75,10 @@ export default function ClientHomePage() {
       <OutstandingRequests threads={requests} />
 
       <section className="border-border border-t pt-6">
-        <ClientProgress tasks={clientTasks} />
+        <SecondaryTaskList tasks={clientTasks} />
       </section>
 
       <NextActionHero task={primary} waitingOnPreparer={waitingOnPreparer} />
-
-      <SecondaryTaskList tasks={clientTasks} />
     </div>
   );
 }

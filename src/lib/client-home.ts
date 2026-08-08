@@ -1,5 +1,4 @@
-import { buildStatusView } from "@/lib/return-status";
-import type { Task, TaxReturn } from "@/lib/types";
+import type { Task } from "@/lib/types";
 
 const URGENCY_RANK: Record<Task["urgency"], number> = {
   high: 0,
@@ -33,11 +32,4 @@ export function getTaskProgress(tasks: Task[]): {
   const total = tasks.length;
   const done = tasks.filter((t) => t.status === "done").length;
   return { done, total };
-}
-
-export function clientFriendlyStatus(
-  taxReturn: TaxReturn | undefined,
-): string {
-  const view = buildStatusView(taxReturn, "client");
-  return view?.headline ?? "Getting started";
 }

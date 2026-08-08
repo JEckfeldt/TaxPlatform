@@ -4,7 +4,6 @@ import Link from "next/link";
 import { ClientBreadcrumbs } from "@/components/client/client-breadcrumbs";
 import { useClientDemo } from "@/components/client/client-demo-provider";
 import { usePersona } from "@/components/persona/persona-provider";
-import { Badge } from "@/components/ui/badge";
 import {
   Card,
   CardDescription,
@@ -59,15 +58,7 @@ export default function ClientMessagesPage() {
               <Link key={thread.id} href={`/client/messages/${thread.id}`}>
                 <Card className="transition-shadow hover:shadow-md">
                   <CardHeader className="space-y-2">
-                    <div className="flex flex-wrap items-center gap-2">
-                      <CardTitle className="text-base">{thread.subject}</CardTitle>
-                      <Badge variant="secondary">
-                        Next:{" "}
-                        {thread.nextActionOwner === "client"
-                          ? "you"
-                          : thread.nextActionOwner}
-                      </Badge>
-                    </div>
+                    <CardTitle className="text-base">{thread.subject}</CardTitle>
                     <CardDescription className="line-clamp-2">
                       {author ? `${author.name.split(" ")[0]}: ` : null}
                       {last?.body}

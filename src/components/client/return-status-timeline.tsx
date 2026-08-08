@@ -1,14 +1,10 @@
-import { Badge } from "@/components/ui/badge";
 import type { StatusView } from "@/lib/return-status";
 import { cn } from "@/lib/utils";
 
 export function ReturnStatusTimeline({ view }: { view: StatusView }) {
   return (
     <section className="space-y-4">
-      <div className="flex flex-wrap items-center justify-between gap-2">
-        <h2 className="text-sm font-semibold tracking-tight">Return status</h2>
-        <Badge variant="secondary">{view.ownerLabel}</Badge>
-      </div>
+      <h2 className="text-sm font-semibold tracking-tight">Return status</h2>
 
       <ol className="grid grid-cols-2 gap-2 sm:grid-cols-4 sm:gap-3">
         {view.stages.map((stage, index) => {
@@ -41,18 +37,6 @@ export function ReturnStatusTimeline({ view }: { view: StatusView }) {
           );
         })}
       </ol>
-
-      <div className="space-y-1">
-        <p className="text-sm">
-          <span className="text-muted-foreground">Next: </span>
-          <span className="font-medium">{view.nextAction}</span>
-        </p>
-        {view.blockers.length > 0 ? (
-          <p className="text-destructive text-sm">
-            Blocked: {view.blockers.join(" · ")}
-          </p>
-        ) : null}
-      </div>
     </section>
   );
 }

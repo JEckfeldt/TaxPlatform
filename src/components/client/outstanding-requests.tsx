@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { Badge } from "@/components/ui/badge";
 import { buttonVariants } from "@/components/ui/button";
 import type { MessageThread } from "@/lib/types";
 import { getPersona } from "@/lib/personas";
@@ -14,12 +13,7 @@ export function OutstandingRequests({
 
   return (
     <section className="space-y-3">
-      <div className="flex flex-wrap items-center justify-between gap-2">
-        <h2 className="text-sm font-semibold tracking-tight">
-          Waiting on you
-        </h2>
-        <Badge variant="secondary">{threads.length} request{threads.length === 1 ? "" : "s"}</Badge>
-      </div>
+      <h2 className="text-sm font-semibold tracking-tight">Waiting on you</h2>
       <ul className="divide-border/80 border-border/80 divide-y rounded-xl border">
         {threads.map((thread) => {
           const last = thread.messages[thread.messages.length - 1];

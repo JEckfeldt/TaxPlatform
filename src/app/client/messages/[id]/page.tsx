@@ -5,7 +5,6 @@ import { use, useState } from "react";
 import { ClientBreadcrumbs } from "@/components/client/client-breadcrumbs";
 import { useClientDemo } from "@/components/client/client-demo-provider";
 import { RelatedObjects } from "@/components/client/related-objects";
-import { Badge } from "@/components/ui/badge";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { relatedFromThread } from "@/lib/client-navigation";
 import { getPersona } from "@/lib/personas";
@@ -55,12 +54,6 @@ export default function ThreadDetailPage({
           <h1 className="text-3xl font-semibold tracking-tight">
             {thread.subject}
           </h1>
-          <Badge variant="secondary">
-            Next:{" "}
-            {thread.nextActionOwner === "client"
-              ? "you"
-              : thread.nextActionOwner}
-          </Badge>
         </div>
         <Link
           href="/client/home"
