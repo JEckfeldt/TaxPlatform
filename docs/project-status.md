@@ -12,8 +12,8 @@ Living snapshot of what exists in the codebase. Update this file whenever featur
 
 | | |
 | --- | --- |
-| **Done recently** | Firm return single Messages card (whose turn + latest); firm thread reply |
-| **Next up** | M11 ship (deploy + video); optional Riley/extra role lenses |
+| **Done recently** | Docs/README pass; shared shell breadcrumbs/nav; live Vercel URL |
+| **Next up** | M11 demo video |
 | **Blocked** | None |
 
 ---
@@ -33,7 +33,7 @@ Living snapshot of what exists in the codebase. Update this file whenever featur
 | M01 | Source Document Traceability | Done | Fake W-2 highlight in side panel |
 | M10 | Trustworthy AI | Done | `simulateAI` stub; accept / edit / reject |
 | M09 | Complexity Made Navigable | Done | ~150 returns; name search + entity chips |
-| M11 | Ship | Not started | Not deployed; no video yet |
+| M11 | Ship | Partial | Live at https://tax-platform-seven.vercel.app/ ; demo video still open |
 
 ---
 
@@ -96,6 +96,7 @@ Living snapshot of what exists in the codebase. Update this file whenever featur
 | [implementations/jordan-dual-context.md](./implementations/jordan-dual-context.md) | M05 polish (implemented) |
 | [implementations/ui-refresh-greengrowth.md](./implementations/ui-refresh-greengrowth.md) | UI theme/structure refresh (implemented) |
 | [manual-qa-checklist.md](./manual-qa-checklist.md) | User stories + manual verification checklists |
+| [deploy-vercel.md](./deploy-vercel.md) | Hosting / redeploy notes (live URL) |
 | [AI_Engineer_Case_Study_Updated.pdf](./AI_Engineer_Case_Study_Updated.pdf) | Case study |
 
 ---
@@ -104,6 +105,9 @@ Living snapshot of what exists in the codebase. Update this file whenever featur
 
 ### 2026-08-08
 
+- Docs/repo cleanup: README walkthrough, shared `AppBreadcrumbs`/`navigation.ts`, stale implementation banners
+- Deployed to Vercel: https://tax-platform-seven.vercel.app/
+- M11 prep: `npm run build` verified; [deploy-vercel.md](./deploy-vercel.md)
 - Firm return single Messages card (whose turn + latest message); `/firm/messages/[id]` replies
 - Jordan personal filing matches Alex client home; **Firm work** nav back to CPA; removed from picker
 

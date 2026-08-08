@@ -1,5 +1,7 @@
 # UI Refresh — GreenGrowth (theme + structure)
 
+> **Implemented** (theme/fonts/de-card). Dual-context entry is nav links, not a role switcher. See [project-status.md](../project-status.md).
+
 ## Feature summary
 
 Scoped visual and structure pass across the demo: sharpen the existing GreenGrowth forest/sage theme, add a display font for major titles (keep Manrope for UI), and de-card surfaces so cards appear only for real interactions — while preserving all primary routes and components (persona picker, client home loop, firm queue/search, Alex return review, Jordan dual-context).

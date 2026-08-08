@@ -1,5 +1,7 @@
 # GreenGrowth Rebrand, Layout & Cleanup
 
+> **Historical.** Rename/layout shipped; soft theme and first-run nav rules were superseded by the UI refresh. See [project-status.md](../project-status.md) and [ui-refresh-greengrowth.md](./ui-refresh-greengrowth.md).
+
 ## Feature summary
 
 Rename the product from Ledgerline to **GreenGrowth**, restyle the UI to soft off-white backgrounds with medium forest/sage greens, widen layouts so screens feel mobile-friendly and less cramped, add a small-screen header nav overflow menu, and delete unused create-next-app assets plus unused shadcn UI components.

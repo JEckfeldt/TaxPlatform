@@ -1,5 +1,7 @@
 # Jordan Dual Context (M05 polish)
 
+> **Superseded.** Shipped entry is firm nav **Personal filing** / client nav **Firm work** (no role switcher). Personal home matches Alex’s W-2 path. Historical planning only — see [project-status.md](../project-status.md).
+
 ## Feature summary
 
 Finish the light M05 dual-context beat: keep the landing picker at Alex + Jordan CPA, expose **Jordan · Personal filing** in the in-app role switcher, and land that persona on a settled-style client home for Jordan’s own return with a clear “personal filing, not firm queue” banner. Sam, Riley, and other role lenses stay out of scope.

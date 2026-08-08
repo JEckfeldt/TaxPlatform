@@ -1,5 +1,7 @@
 # Client First-Run (M03 · Where to Start)
 
+> **Partially outdated.** M03 shipped; First-run/Settled toggle and hidden Messages chrome were removed. Historical planning only — see [project-status.md](../project-status.md).
+
 ## Feature summary
 
 Polish the cold-client experience so Alex Rivera lands on a home screen where the single next action (“Upload W-2 — Acme Corp”) is obvious within ~10 seconds. Include a demo toggle for first-run vs settled chrome, a light fake upload completion on the task page, and simplify the persona picker to two options for now (one client, one CPA).

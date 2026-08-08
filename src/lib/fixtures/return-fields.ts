@@ -16,7 +16,6 @@ export const ALEX_RETURN_FIELDS: ReturnField[] = [
       page: 1,
       regionLabel: "Box 1 — Wages",
       highlight: { top: 28, left: 8, width: 42, height: 10 },
-      transformNote: "OCR extracted; commas normalized to currency format.",
     },
     ai: {
       confidence: 0.93,
@@ -43,7 +42,6 @@ export const ALEX_RETURN_FIELDS: ReturnField[] = [
       page: 1,
       regionLabel: "Box 2 — Federal income tax withheld",
       highlight: { top: 28, left: 54, width: 38, height: 10 },
-      transformNote: "OCR extracted from Box 2; no arithmetic transform.",
     },
     ai: {
       confidence: 0.61,
@@ -70,7 +68,6 @@ export const ALEX_RETURN_FIELDS: ReturnField[] = [
       page: 1,
       regionLabel: "Employee’s social security number",
       highlight: { top: 12, left: 55, width: 36, height: 8 },
-      transformNote: "Masked for display; last four verified by preparer.",
     },
     ai: {
       confidence: 0.98,
@@ -91,7 +88,6 @@ export const ALEX_RETURN_FIELDS: ReturnField[] = [
       page: 1,
       regionLabel: "Employer identification number",
       highlight: { top: 18, left: 8, width: 40, height: 8 },
-      transformNote: "Formatted with EIN hyphenation.",
     },
     ai: {
       confidence: 0.88,
@@ -114,7 +110,6 @@ export const ALEX_RETURN_FIELDS: ReturnField[] = [
       page: 1,
       regionLabel: "Employer’s name, address, and ZIP code",
       highlight: { top: 40, left: 8, width: 55, height: 14 },
-      transformNote: "Name line only; address stored separately.",
     },
   },
   {
@@ -130,7 +125,6 @@ export const ALEX_RETURN_FIELDS: ReturnField[] = [
       page: 1,
       regionLabel: "Control number",
       highlight: { top: 12, left: 8, width: 28, height: 8 },
-      transformNote: "Passthrough from payroll import; not recomputed.",
     },
   },
   {
@@ -145,7 +139,6 @@ export const ALEX_RETURN_FIELDS: ReturnField[] = [
       page: 1,
       regionLabel: "Box 16 — State wages",
       highlight: { top: 72, left: 8, width: 30, height: 9 },
-      transformNote: "Copied from Box 16; equals federal wages for this sample.",
     },
     ai: {
       confidence: 0.9,

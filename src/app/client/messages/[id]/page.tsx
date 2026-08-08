@@ -2,11 +2,11 @@
 
 import Link from "next/link";
 import { use, useState } from "react";
-import { ClientBreadcrumbs } from "@/components/client/client-breadcrumbs";
+import { AppBreadcrumbs } from "@/components/shell/app-breadcrumbs";
 import { useClientDemo } from "@/components/client/client-demo-provider";
-import { RelatedObjects } from "@/components/client/related-objects";
+import { RelatedObjects } from "@/components/shell/related-objects";
 import { Button, buttonVariants } from "@/components/ui/button";
-import { relatedFromThread } from "@/lib/client-navigation";
+import { relatedFromThread } from "@/lib/navigation";
 import { getPersona } from "@/lib/personas";
 import { cn } from "@/lib/utils";
 
@@ -41,7 +41,7 @@ export default function ThreadDetailPage({
 
   return (
     <div className="space-y-6">
-      <ClientBreadcrumbs
+      <AppBreadcrumbs
         items={[
           { label: "Home", href: "/client/home" },
           { label: "Messages", href: "/client/messages" },
@@ -79,7 +79,7 @@ export default function ThreadDetailPage({
       <div className="space-y-3">
         {thread.messages.map((message) => {
           const author = getPersona(message.authorId);
-          const fromClient = message.authorId === "alex";
+          const fromClient = author?.shell === "client";
           return (
             <div
               key={message.id}

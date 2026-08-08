@@ -3,9 +3,9 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { use, useState } from "react";
-import { ClientBreadcrumbs } from "@/components/client/client-breadcrumbs";
+import { AppBreadcrumbs } from "@/components/shell/app-breadcrumbs";
 import { useClientDemo } from "@/components/client/client-demo-provider";
-import { RelatedObjects } from "@/components/client/related-objects";
+import { RelatedObjects } from "@/components/shell/related-objects";
 import { Button, buttonVariants } from "@/components/ui/button";
 import {
   Card,
@@ -14,7 +14,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { threadForTask } from "@/lib/client-navigation";
+import { threadForTask } from "@/lib/navigation";
 import {
   isQuestionnaireTask,
   isW2UploadTask,
@@ -59,7 +59,7 @@ export default function TaskPage({
 
   return (
     <div className="space-y-6">
-      <ClientBreadcrumbs
+      <AppBreadcrumbs
         items={[
           { label: "Home", href: "/client/home" },
           { label: task.title },

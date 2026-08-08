@@ -149,6 +149,7 @@ export function segmentCounts(
   };
 }
 
+/** Short next-owner chip for the firm queue (not the client status copy). */
 export function ownerLabel(owner: TaxReturn["nextActionOwner"]): string {
   if (owner === "client") return "Client";
   if (owner === "preparer") return "Preparer";

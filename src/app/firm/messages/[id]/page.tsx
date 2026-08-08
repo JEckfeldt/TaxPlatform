@@ -2,10 +2,10 @@
 
 import Link from "next/link";
 import { use, useState } from "react";
-import { ClientBreadcrumbs } from "@/components/client/client-breadcrumbs";
 import { useFirmDemo } from "@/components/firm/firm-demo-provider";
+import { AppBreadcrumbs } from "@/components/shell/app-breadcrumbs";
+import { RelatedObjects } from "@/components/shell/related-objects";
 import { Button, buttonVariants } from "@/components/ui/button";
-import { relatedFromThread } from "@/lib/client-navigation";
 import { getFirmReturn } from "@/lib/fixtures/seed";
 import { getPersona } from "@/lib/personas";
 import { cn } from "@/lib/utils";
@@ -32,7 +32,6 @@ export default function FirmThreadPage({
   }
 
   const taxReturn = getFirmReturn(thread.returnId);
-  const related = relatedFromThread(thread);
   const returnHref = `/firm/returns/${thread.returnId}`;
 
   function send() {
@@ -43,7 +42,7 @@ export default function FirmThreadPage({
 
   return (
     <div className="space-y-6">
-      <ClientBreadcrumbs
+      <AppBreadcrumbs
         items={[
           { label: "Dashboard", href: "/firm/dashboard" },
           {
@@ -73,56 +72,25 @@ export default function FirmThreadPage({
         </Link>
       </div>
 
-      <div className="space-y-2">
-        <p className="text-muted-foreground text-xs font-medium tracking-wide uppercase">
-          Related
-        </p>
-        <div className="flex flex-col gap-2 sm:flex-row sm:flex-wrap">
-          <Link
-            href={returnHref}
-            className={cn(buttonVariants({ variant: "outline", size: "sm" }))}
-          >
-            <span className="text-muted-foreground mr-1.5">Return:</span>
-            {taxReturn
-              ? `${taxReturn.clientName} · ${taxReturn.taxYear}`
-              : "Open return"}
-          </Link>
-          {related.taskTitle ? (
-            <span
-              className={cn(
-                buttonVariants({ variant: "outline", size: "sm" }),
-                "pointer-events-none opacity-80",
-              )}
-            >
-              <span className="text-muted-foreground mr-1.5">Task:</span>
-              {related.taskTitle}
-            </span>
-          ) : null}
-          {related.documentName ? (
-            <span
-              className={cn(
-                buttonVariants({ variant: "outline", size: "sm" }),
-                "pointer-events-none opacity-80",
-              )}
-            >
-              <span className="text-muted-foreground mr-1.5">Document:</span>
-              {related.documentName}
-            </span>
-          ) : null}
-        </div>
-      </div>
+      <RelatedObjects
+        returnHref={returnHref}
+        returnLabel={
+          taxReturn
+            ? `${taxReturn.clientName} · ${taxReturn.taxYear}`
+            : "Open return"
+        }
+      />
 
       <div className="space-y-3">
         {thread.messages.map((message) => {
           const author = getPersona(message.authorId);
-          const fromPreparer =
-            message.authorId === "jordan" || message.authorId === "riley";
+          const fromFirm = author?.shell === "firm";
           return (
             <div
               key={message.id}
               className={cn(
                 "max-w-2xl rounded-xl border px-4 py-3",
-                fromPreparer
+                fromFirm
                   ? "border-primary/20 bg-primary/5 ml-auto"
                   : "border-border/80 bg-card mr-auto",
               )}

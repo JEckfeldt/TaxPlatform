@@ -1,3 +1,6 @@
+/**
+ * Shared thread/document helpers used by client and firm shells.
+ */
 import { DOCUMENTS, TASKS } from "@/lib/fixtures/seed";
 import type { MessageThread } from "@/lib/types";
 
@@ -41,15 +44,6 @@ export function outstandingClientRequests(
 ): MessageThread[] {
   return clientThreadsForReturn(threads, returnId).filter(
     (t) => t.nextActionOwner === "client",
-  );
-}
-
-export function outstandingPreparerRequests(
-  threads: MessageThread[],
-  returnId: string | undefined,
-): MessageThread[] {
-  return clientThreadsForReturn(threads, returnId).filter(
-    (t) => t.nextActionOwner === "preparer",
   );
 }
 

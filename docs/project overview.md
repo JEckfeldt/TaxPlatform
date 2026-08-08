@@ -2,7 +2,11 @@
 
 Greenfield AI-powered client & CPA tax platform for the AI Engineer case study. Graded on frontend UX (visual design, interaction design, information architecture), not production backend or real AI.
 
+**Living status:** [project-status.md](./project-status.md) (prefer that file for “what’s shipped now”).  
+**Live demo:** [https://tax-platform-seven.vercel.app/](https://tax-platform-seven.vercel.app/)  
 **Source:** [AI_Engineer_Case_Study_Updated.pdf](./AI_Engineer_Case_Study_Updated.pdf)
+
+> Some locked decisions below are historical (e.g. in-app role switcher, soft visual tone). Current product: landing picker + firm **Personal filing** / client **Firm work**; sharper GreenGrowth theme.
 
 ---
 
@@ -35,9 +39,9 @@ Greenfield AI-powered client & CPA tax platform for the AI Engineer case study. 
 | Walkthrough hero | Client-first, then switch into CPA |
 | Sample data | Mixed — individual 1040 + small-business return(s) |
 | Product name | GreenGrowth |
-| Visual tone | Soft off-white + forest/sage greens; document-review density on CPA surfaces |
+| Visual tone | Sharper off-white + forest/sage; document-review density on CPA surfaces |
 | Stack | Next.js (App Router) + TypeScript |
-| Demo auth | Light persona picker + in-app role switch |
+| Demo auth | Landing persona picker; Jordan dual-context via Personal filing / Firm work nav |
 | UI | shadcn/ui + custom GreenGrowth theme |
 | Hosting | Vercel Hobby (free) |
 | Video | 5–10 minutes max |
@@ -104,9 +108,9 @@ Keep narration tight; every beat proves a challenge.
 | 1:30–3:00 | Open task → document → message without losing place; show ownership | #02, #04 |
 | 3:00–3:30 | Switch to Jordan (preparer); shell adapts | #05 |
 | 3:30–5:00 | Dashboard: urgency ranking, drill into return; mention scale/filters | #07, #09 |
-| 5:00–7:30 | Return review: field states, open AI trust panel, trace to source page/transform, correct a value | #01, #08, #10 |
-| 7:30–9:00 | Internal note vs client-visible request; status meaning matches client view | #02, #06 |
-| 9:00–10:00 | Optional: Jordan → personal return context; wrap real vs simulated | #05 |
+| 5:00–7:30 | Return review: field states, AI trust panel, W-2 source highlight, correct a value | #01, #08, #10 |
+| 7:30–9:00 | Return Messages card → firm thread reply; note client “Waiting on you” ownership | #02, #06 |
+| 9:00–10:00 | Firm nav **Personal filing** ↔ **Firm work**; wrap real vs simulated | #05 |
 
 If short on time in the video, cut the multi-role personal-return beat first — keep traceability + AI trust + dashboard.
 
@@ -116,20 +120,21 @@ If short on time in the video, cut the multi-role personal-return beat first —
 
 ### Must-ship (video path)
 
-1. **Persona picker** — 3–5 clickable personas  
-2. **Client home** — single primary CTA, short task list, status chip, deferred chrome  
-3. **Task / document / message triad** — linked objects, breadcrumbs, “back to workflow”  
-4. **CPA dashboard** — ranked work items from fake ranking script; open a return  
-5. **Return workspace** — status strip, field list with affordance states, side panel for AI + source trace  
-6. **Collaboration pane** — internal vs client thread toggle; outstanding request + owner  
-7. **In-app role switch** — always visible in shell  
+1. **Persona picker** — Alex + Jordan CPA  
+2. **Client home** — primary CTA, to-dos, status stepper, Home + Messages nav  
+3. **Task / document / message triad** — related links, breadcrumbs  
+4. **CPA dashboard** — ranked queue; open a return  
+5. **Return workspace** — field affordances, AI + source side panel  
+6. **Collaboration** — client requests + firm return Messages card / thread reply  
+7. **Jordan dual-context** — Personal filing / Firm work nav  
 
-### Should-ship (if time in budget)
+### Should-ship / deferred
 
-8. Business-owner persona landing (lighter than Alex)  
-9. Large fixture set (100+ returns or line items) + search/filter UI  
-10. Reviewer persona with reduced edit permissions  
-11. Post-onboarding client home variant (toggle or second state)  
+8. Business-owner persona landing (Sam — seed only)  
+9. Large fixture set (100+ returns) + search/filter — **done** (~150)  
+10. Reviewer persona (Riley — seed only)  
+11. Internal vs client-visible firm thread toggle — deferred  
+12. Demo video (M11 remainder)  
 
 ### Explicitly fake / stub
 

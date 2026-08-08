@@ -13,7 +13,7 @@ import {
   getPrimaryTask,
   getTaskProgress,
 } from "@/lib/client-home";
-import { outstandingClientRequests } from "@/lib/client-navigation";
+import { outstandingClientRequests } from "@/lib/navigation";
 import { returnForPersona } from "@/lib/fixtures/seed";
 import { buildStatusView } from "@/lib/return-status";
 

@@ -1,5 +1,7 @@
 # CPA Queue Scale & Search (M09)
 
+> **Implemented** (~150 returns + search/entity). All/My edges in this doc are outdated (queue is preparer-scoped). See [project-status.md](../project-status.md).
+
 ## Feature summary
 
 Scale Jordan’s firm work queue to ~150 returns and add progressive disclosure via client-name search, entity-type chips (All / Individual / Business), and a clear “Showing X of Y” result count — while keeping Alex Rivera’s existing return-review workspace as the deep detail drill-in. No dense in-return line-item catalog and no list virtualization.

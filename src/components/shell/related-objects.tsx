@@ -2,6 +2,7 @@ import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
+/** Cross-links between tasks, documents, threads, and firm return workspaces. */
 export function RelatedObjects({
   taskHref,
   taskLabel,
@@ -9,6 +10,8 @@ export function RelatedObjects({
   documentLabel,
   threadHref,
   threadLabel,
+  returnHref,
+  returnLabel,
 }: {
   taskHref?: string;
   taskLabel?: string;
@@ -16,8 +19,17 @@ export function RelatedObjects({
   documentLabel?: string;
   threadHref?: string;
   threadLabel?: string;
+  returnHref?: string;
+  returnLabel?: string;
 }) {
   const links = [
+    returnHref
+      ? {
+          href: returnHref,
+          label: returnLabel ?? "Return",
+          kind: "Return",
+        }
+      : null,
     taskHref
       ? { href: taskHref, label: taskLabel ?? "Task", kind: "Task" }
       : null,

@@ -1,8 +1,9 @@
 import Link from "next/link";
-import type { BreadcrumbItem } from "@/lib/client-navigation";
+import type { BreadcrumbItem } from "@/lib/navigation";
 import { cn } from "@/lib/utils";
 
-export function ClientBreadcrumbs({
+/** Shared breadcrumb trail for client and firm detail pages. */
+export function AppBreadcrumbs({
   items,
   className,
 }: {

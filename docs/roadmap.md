@@ -28,14 +28,14 @@ Product UI name: **GreenGrowth**. Rough delivery roadmap for the case study prot
 | **M05** | Role-Aware Experiences | M0 | ~3–4h | Partial (dual-context done; Riley/extra lenses deferred) |
 | **M03** | Where to Start | M05 | ~4–5h | **Done** (picker trimmed to 2) |
 | **M06** | Return Status & Progress | M03 | ~3–4h | **Done** (client-only) |
-| **M02** | Client & CPA Collaboration | M03 | ~4–5h | **Done** (client; firm deferred) |
+| **M02** | Client & CPA Collaboration | M03 | ~4–5h | **Done** (client + firm return threads) |
 | **M04** | Getting Lost in the App | M02 | ~3–4h | **Done** (client loop) |
 | **M07** | An Actionable Dashboard | M05 | ~4–5h | **Done** |
 | **M08** | Clickable vs. Editable | M07 | ~3–4h | **Done** (Alex review + dashboard chips) |
 | **M01** | Source Document Traceability | M08 | ~5–6h | **Done** (fake W-2 side panel) |
 | **M10** | Trustworthy AI | M01, M08 | ~4–5h | **Done** (`simulateAI` + accept/edit/reject) |
 | **M09** | Complexity Made Navigable | M07, M01 | ~4–5h | **Done** (~150 returns + search/entity) |
-| **M11** | Ship (README, deploy, video) | All | ~3–4h | Not started |
+| **M11** | Ship (README, deploy, video) | All | ~3–4h | **Partial** (live on Vercel; video open) |
 
 Suggested order above follows the **client-first demo narrative**, then firm depth. Parallelizable after M05: client track (M03→M06→M02→M04) and firm track (M07→M08→M01→M10), merge for M09/M11.
 

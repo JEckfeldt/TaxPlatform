@@ -1,5 +1,7 @@
 # CPA Actionable Dashboard (M07)
 
+> **Superseded in part.** Queue is preparer-scoped (no All/My returns); scale/search covered by later M09 work. Core ranking/segments still reflect the product. See [project-status.md](../project-status.md).
+
 ## Feature summary
 
 Build Jordan’s preparer work queue on `/firm/dashboard`: a decision-oriented list of ~40–60 returns ranked by urgency, with simple segment filters (All / My returns / Waiting on client / Blocked / Needs prep), clear next actions, and click-through into existing return workspace stubs. No manager dashboard and no deep return-review UI in this milestone.

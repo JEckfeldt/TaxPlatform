@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useFirmDemo } from "@/components/firm/firm-demo-provider";
-import { clientThreadsForReturn } from "@/lib/client-navigation";
+import { clientThreadsForReturn } from "@/lib/navigation";
 import { getPersona } from "@/lib/personas";
 import type { MessageThread } from "@/lib/types";
 

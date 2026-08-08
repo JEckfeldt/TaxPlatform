@@ -1,5 +1,7 @@
 # Client Collaboration & Navigation (M02 + M04)
 
+> **Mostly shipped; chrome rules outdated.** Messages are always in client nav; breadcrumbs/related live under `components/shell/`. Firm return messaging was added later. See [project-status.md](../project-status.md).
+
 ## Feature summary
 
 Build the client-side collaboration and orientation loop for Alex: contextual message threads tied to the W-2 task/document, a messages list + thread detail with replies, outstanding CPA requests on home, and navigation that keeps place via breadcrumbs, cross-links, and Back to home. Firm/internal-note UI is deferred.

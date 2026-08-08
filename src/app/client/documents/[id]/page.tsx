@@ -2,14 +2,14 @@
 
 import Link from "next/link";
 import { use } from "react";
-import { ClientBreadcrumbs } from "@/components/client/client-breadcrumbs";
+import { AppBreadcrumbs } from "@/components/shell/app-breadcrumbs";
 import { useClientDemo } from "@/components/client/client-demo-provider";
-import { RelatedObjects } from "@/components/client/related-objects";
+import { RelatedObjects } from "@/components/shell/related-objects";
 import { buttonVariants } from "@/components/ui/button";
 import {
   documentById,
   threadForDocument,
-} from "@/lib/client-navigation";
+} from "@/lib/navigation";
 import { TASKS } from "@/lib/fixtures/seed";
 import { cn } from "@/lib/utils";
 
@@ -37,7 +37,7 @@ export default function DocumentPage({
 
   return (
     <div className="space-y-6">
-      <ClientBreadcrumbs
+      <AppBreadcrumbs
         items={[
           { label: "Home", href: "/client/home" },
           { label: doc.name },

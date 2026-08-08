@@ -89,7 +89,6 @@ export interface FieldSource {
   regionLabel: string;
   /** CSS-ish fake highlight box on the preview (percentages). */
   highlight: { top: number; left: number; width: number; height: number };
-  transformNote: string;
 }
 
 export interface FieldAI {

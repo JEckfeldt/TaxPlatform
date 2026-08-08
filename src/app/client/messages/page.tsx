@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ClientBreadcrumbs } from "@/components/client/client-breadcrumbs";
+import { AppBreadcrumbs } from "@/components/shell/app-breadcrumbs";
 import { useClientDemo } from "@/components/client/client-demo-provider";
 import { usePersona } from "@/components/persona/persona-provider";
 import {
@@ -11,7 +11,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { buttonVariants } from "@/components/ui/button";
-import { clientThreadsForReturn } from "@/lib/client-navigation";
+import { clientThreadsForReturn } from "@/lib/navigation";
 import { returnForPersona } from "@/lib/fixtures/seed";
 import { getPersona } from "@/lib/personas";
 import { cn } from "@/lib/utils";
@@ -24,7 +24,7 @@ export default function ClientMessagesPage() {
 
   return (
     <div className="space-y-6">
-      <ClientBreadcrumbs
+      <AppBreadcrumbs
         items={[
           { label: "Home", href: "/client/home" },
           { label: "Messages" },

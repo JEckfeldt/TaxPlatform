@@ -8,9 +8,10 @@ import {
   useState,
   type ReactNode,
 } from "react";
+import { usePersona } from "@/components/persona/persona-provider";
 import { RETURNS, TASKS, THREADS } from "@/lib/fixtures/seed";
 import { deriveReturnFromClientTasks } from "@/lib/return-status";
-import type { MessageThread, Task, TaxReturn } from "@/lib/types";
+import type { MessageThread, PersonaId, Task, TaxReturn } from "@/lib/types";
 
 type ClientDemoContextValue = {
   tasks: Task[];
@@ -21,7 +22,6 @@ type ClientDemoContextValue = {
   getThread: (id: string) => MessageThread | undefined;
   completeTask: (id: string) => void;
   replyToThread: (threadId: string, body: string) => boolean;
-  resetDemoData: () => void;
 };
 
 const ClientDemoContext = createContext<ClientDemoContextValue | null>(null);
@@ -45,7 +45,15 @@ function syncReturnsToTasks(returns: TaxReturn[], tasks: Task[]): TaxReturn[] {
   return returns.map((r) => deriveReturnFromClientTasks(r, tasks));
 }
 
+/** Client-shell replies are authored as the active client persona. */
+function clientAuthorId(personaId: PersonaId | null | undefined): PersonaId {
+  if (personaId === "jordan-personal") return "jordan-personal";
+  if (personaId === "sam") return "sam";
+  return "alex";
+}
+
 export function ClientDemoProvider({ children }: { children: ReactNode }) {
+  const { persona } = usePersona();
   const [tasks, setTasks] = useState<Task[]>(cloneTasks);
   const [returns, setReturns] = useState<TaxReturn[]>(() =>
     syncReturnsToTasks(cloneReturns(), cloneTasks()),
@@ -77,37 +85,34 @@ export function ClientDemoProvider({ children }: { children: ReactNode }) {
     });
   }, []);
 
-  const replyToThread = useCallback((threadId: string, body: string) => {
-    const trimmed = body.trim();
-    if (!trimmed) return false;
+  const replyToThread = useCallback(
+    (threadId: string, body: string) => {
+      const trimmed = body.trim();
+      if (!trimmed) return false;
+      const authorId = clientAuthorId(persona?.id);
 
-    setThreads((prev) =>
-      prev.map((thread) => {
-        if (thread.id !== threadId) return thread;
-        return {
-          ...thread,
-          nextActionOwner: "preparer",
-          messages: [
-            ...thread.messages,
-            {
-              id: `msg-${Date.now()}`,
-              authorId: "alex" as const,
-              body: trimmed,
-              createdAt: new Date().toISOString(),
-            },
-          ],
-        };
-      }),
-    );
-    return true;
-  }, []);
-
-  const resetDemoData = useCallback(() => {
-    const nextTasks = cloneTasks();
-    setTasks(nextTasks);
-    setReturns(syncReturnsToTasks(cloneReturns(), nextTasks));
-    setThreads(cloneThreads());
-  }, []);
+      setThreads((prev) =>
+        prev.map((thread) => {
+          if (thread.id !== threadId) return thread;
+          return {
+            ...thread,
+            nextActionOwner: "preparer",
+            messages: [
+              ...thread.messages,
+              {
+                id: `msg-${Date.now()}`,
+                authorId,
+                body: trimmed,
+                createdAt: new Date().toISOString(),
+              },
+            ],
+          };
+        }),
+      );
+      return true;
+    },
+    [persona?.id],
+  );
 
   const value = useMemo(
     () => ({
@@ -119,7 +124,6 @@ export function ClientDemoProvider({ children }: { children: ReactNode }) {
       getThread,
       completeTask,
       replyToThread,
-      resetDemoData,
     }),
     [
       tasks,
@@ -130,7 +134,6 @@ export function ClientDemoProvider({ children }: { children: ReactNode }) {
       getThread,
       completeTask,
       replyToThread,
-      resetDemoData,
     ],
   );
 
