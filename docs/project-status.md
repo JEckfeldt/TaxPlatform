@@ -42,7 +42,7 @@ Living snapshot of what exists in the codebase. Update this file whenever featur
 - Persona picker — Alex, Jordan CPA, Jordan · Personal filing (header links back to `/`)
 - Full client loop — home, status, requests, tasks, docs, messages/replies (Home + Messages always in nav)
 - Jordan personal return — same what’s-next home + context banner + dependents task
-- CPA dashboard — ~150 returns, dense list rows, search, entity + segment filters
+- CPA dashboard — preparer-scoped queue, search, entity + status segments (no firm-wide All/My)
 - CPA return review (Alex) — field affordances, W-2 source trace, AI explain/correct
 - Other firm returns — callout linking to Alex demo path
 - Brand/theme — GreenGrowth; sharper forest/sage; Sora titles + Manrope UI; de-carded surfaces
@@ -93,6 +93,7 @@ Living snapshot of what exists in the codebase. Update this file whenever featur
 | [implementations/cpa-queue-scale-search.md](./implementations/cpa-queue-scale-search.md) | M09 (implemented) |
 | [implementations/jordan-dual-context.md](./implementations/jordan-dual-context.md) | M05 polish (implemented) |
 | [implementations/ui-refresh-greengrowth.md](./implementations/ui-refresh-greengrowth.md) | UI theme/structure refresh (implemented) |
+| [manual-qa-checklist.md](./manual-qa-checklist.md) | User stories + manual verification checklists |
 | [AI_Engineer_Case_Study_Updated.pdf](./AI_Engineer_Case_Study_Updated.pdf) | Case study |
 
 ---
@@ -101,6 +102,7 @@ Living snapshot of what exists in the codebase. Update this file whenever featur
 
 ### 2026-08-07
 
+- Firm queue: preparer-only book (removed All/My returns); Alex pinned to top; removed “Alex return” nav
 - Removed navbar role-switcher dropdown; Jordan personal moved onto landing picker
 - Unified client home: removed First-run/Settled demo toggle; Home + Messages always visible; full to-do list
 - UI refresh: sharper GreenGrowth tokens, Sora display titles, de-carded firm queue and client sections

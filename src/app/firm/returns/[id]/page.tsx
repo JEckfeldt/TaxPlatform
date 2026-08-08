@@ -30,6 +30,20 @@ export default async function ReturnWorkspacePage({
     );
   }
 
+  // Demo CPA (Jordan) only opens returns they prepare.
+  if (taxReturn.preparerId !== "jordan") {
+    return (
+      <div className="space-y-4">
+        <p className="text-muted-foreground">
+          This return is assigned to another preparer. It is not in your queue.
+        </p>
+        <Link href="/firm/dashboard" className={cn(buttonVariants())}>
+          Back to dashboard
+        </Link>
+      </div>
+    );
+  }
+
   return (
     <div className="space-y-8">
       <div className="text-muted-foreground flex flex-wrap items-center gap-2 text-sm">

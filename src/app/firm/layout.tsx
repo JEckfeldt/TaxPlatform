@@ -1,9 +1,6 @@
 import { AppHeader } from "@/components/shell/app-header";
 
-const nav = [
-  { href: "/firm/dashboard", label: "Dashboard" },
-  { href: "/firm/returns/ret-alex-2025", label: "Alex return" },
-];
+const nav = [{ href: "/firm/dashboard", label: "Dashboard" }];
 
 export default function FirmLayout({
   children,

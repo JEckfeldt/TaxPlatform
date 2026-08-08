@@ -38,8 +38,13 @@ export function computeUrgency(item: TaxReturn): number {
   return score;
 }
 
+/** Demo pin — Alex Rivera always sorts first when present in the filtered set. */
+const DEMO_PIN_RETURN_ID = "ret-alex-2025";
+
 export function rankReturns(returns: TaxReturn[]): TaxReturn[] {
   return [...returns].sort((a, b) => {
+    if (a.id === DEMO_PIN_RETURN_ID && b.id !== DEMO_PIN_RETURN_ID) return -1;
+    if (b.id === DEMO_PIN_RETURN_ID && a.id !== DEMO_PIN_RETURN_ID) return 1;
     const diff = computeUrgency(b) - computeUrgency(a);
     if (diff !== 0) return diff;
     return a.clientName.localeCompare(b.clientName);
@@ -48,7 +53,6 @@ export function rankReturns(returns: TaxReturn[]): TaxReturn[] {
 
 export type QueueSegment =
   | "all"
-  | "mine"
   | "waiting_client"
   | "blocked"
   | "needs_prep";
@@ -58,11 +62,18 @@ export const QUEUE_SEGMENTS: {
   label: string;
 }[] = [
   { id: "all", label: "All" },
-  { id: "mine", label: "My returns" },
   { id: "waiting_client", label: "Waiting on client" },
   { id: "blocked", label: "Blocked" },
   { id: "needs_prep", label: "Needs prep" },
 ];
+
+/** Preparer book — CPA dashboard only shows returns they prepare. */
+export function returnsForPreparer(
+  returns: TaxReturn[],
+  preparerId: PersonaId = "jordan",
+): TaxReturn[] {
+  return returns.filter((r) => r.preparerId === preparerId);
+}
 
 export type EntityFilter = "all" | "individual" | "business";
 
@@ -95,11 +106,8 @@ export function filterByEntity(
 export function filterBySegment(
   returns: TaxReturn[],
   segment: QueueSegment,
-  preparerId: PersonaId = "jordan",
 ): TaxReturn[] {
   switch (segment) {
-    case "mine":
-      return returns.filter((r) => r.preparerId === preparerId);
     case "waiting_client":
       return returns.filter((r) => r.nextActionOwner === "client");
     case "blocked":
@@ -132,15 +140,12 @@ export function filterBySearchAndEntity(
 
 export function segmentCounts(
   returns: TaxReturn[],
-  preparerId: PersonaId = "jordan",
 ): Record<QueueSegment, number> {
   return {
     all: returns.length,
-    mine: filterBySegment(returns, "mine", preparerId).length,
-    waiting_client: filterBySegment(returns, "waiting_client", preparerId)
-      .length,
-    blocked: filterBySegment(returns, "blocked", preparerId).length,
-    needs_prep: filterBySegment(returns, "needs_prep", preparerId).length,
+    waiting_client: filterBySegment(returns, "waiting_client").length,
+    blocked: filterBySegment(returns, "blocked").length,
+    needs_prep: filterBySegment(returns, "needs_prep").length,
   };
 }
 

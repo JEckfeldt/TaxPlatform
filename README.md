@@ -31,7 +31,7 @@ Open [http://localhost:3000](http://localhost:3000), pick a demo persona, and ex
 | Clickable Next.js UI, routing, persona cookie | Auth / RBAC |
 | Seeded returns, tasks, documents, threads | OCR / document parsing |
 | Firm work queue ranking + search / segment / entity filters | Tax calculation engine |
-| ~150 firm returns (3 named + generated) | Real practice management data |
+| ~150 firm returns; CPA queue shows only Jordan’s book | Real practice management data |
 | CPA field review UI + fake W-2 highlight | Real OCR / LLM (`simulateAI` stub) |
 
 ## Demo personas

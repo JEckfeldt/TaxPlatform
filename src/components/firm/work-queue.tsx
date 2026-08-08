@@ -13,6 +13,7 @@ import {
   filterBySegment,
   ownerLabel,
   rankReturns,
+  returnsForPreparer,
   segmentCounts,
   type EntityFilter,
   type QueueSegment,
@@ -44,15 +45,20 @@ export function WorkQueue({ returns }: { returns: TaxReturn[] }) {
   const [query, setQuery] = useState("");
   const [entity, setEntity] = useState<EntityFilter>("all");
 
-  const scoped = useMemo(
-    () => filterBySearchAndEntity(returns, query, entity),
-    [returns, query, entity],
+  const myReturns = useMemo(
+    () => returnsForPreparer(returns, "jordan"),
+    [returns],
   );
 
-  const counts = useMemo(() => segmentCounts(scoped, "jordan"), [scoped]);
+  const scoped = useMemo(
+    () => filterBySearchAndEntity(myReturns, query, entity),
+    [myReturns, query, entity],
+  );
+
+  const counts = useMemo(() => segmentCounts(scoped), [scoped]);
 
   const ranked = useMemo(() => {
-    const filtered = filterBySegment(scoped, segment, "jordan");
+    const filtered = filterBySegment(scoped, segment);
     return rankReturns(filtered);
   }, [scoped, segment]);
 
@@ -110,7 +116,7 @@ export function WorkQueue({ returns }: { returns: TaxReturn[] }) {
       </div>
 
       <p className="text-muted-foreground text-sm tabular-nums">
-        Showing {ranked.length} of {returns.length}
+        Showing {ranked.length} of {myReturns.length}
       </p>
 
       {ranked.length === 0 ? (
